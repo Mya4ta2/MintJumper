@@ -1,5 +1,6 @@
 package mint.runner.type;
 
+import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.Blocks;
 
 public class World {
@@ -11,7 +12,7 @@ public class World {
         this.width = width;
         this.height = height;
         tiles = new Tiles(width,height);
-        player = new Player();
+        player = new Player(new Vector2(3,3));
 
         createTestWorld();
     }

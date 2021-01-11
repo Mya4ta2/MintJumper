@@ -19,6 +19,7 @@ public class WorldController {
 
         checkPlayerGrounded();
         processInput();
+        processGravity();
     }
 
     public void processInput() {
@@ -60,5 +61,11 @@ public class WorldController {
 
         world.player.grounded = count > 0;
         System.out.println(count > 0);
+    }
+
+    public void processGravity() {
+        if (!world.player.grounded) {
+            world.player.position.y -= 0.5f;
+        }
     }
 }
