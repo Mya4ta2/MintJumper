@@ -37,8 +37,7 @@ public class WorldRenderer implements Renderer {
         drawWorld(batch);
         batch.end();
 
-        camera.position.set(world.player.position.x,world.player.position.y,0);
-        System.out.println(world.player.position.x);
+        camera.position.set(world.player.position.x * tileSize, world.player.position.y * tileSize,0);
         camera.update();
         viewport.apply();
     }
