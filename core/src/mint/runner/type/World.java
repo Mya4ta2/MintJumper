@@ -17,6 +17,6 @@ public class World {
     }
 
     public void createTestWorld() {
-        tiles.get(0,0).block = Blocks.dirt;
+        tiles.get(1,0).block = Blocks.dirt;
     }
 }
