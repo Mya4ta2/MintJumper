@@ -16,8 +16,13 @@ public class MainActivity extends Game {
 	@Override
 	public void create() {
 		new Blocks().load();
+		loadTextures();
 
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);
+	}
+
+	public void loadTextures() {
+		Blocks.dirt.texture = new Texture("badlogic.jpg"); //temp
 	}
 }
