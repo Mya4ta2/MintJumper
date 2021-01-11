@@ -7,14 +7,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import mint.runner.content.Blocks;
 import mint.runner.screen.GameScreen;
 
 public class MainActivity extends Game {
-
-	Screen gameScreen;
+	public Screen gameScreen;
 
 	@Override
 	public void create() {
+		new Blocks().load();
+
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);
 	}
