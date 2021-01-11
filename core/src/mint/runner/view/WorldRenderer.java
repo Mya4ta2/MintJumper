@@ -1,6 +1,8 @@
 package mint.runner.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -18,6 +20,8 @@ public class WorldRenderer implements Renderer {
     public OrthographicCamera camera;
     public Viewport viewport;
 
+    public Texture playerTexture; //oh no
+
     public WorldRenderer(World world) {
         this.world = world;
     }
@@ -27,7 +31,9 @@ public class WorldRenderer implements Renderer {
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
+        camera.zoom = 0.2f;
         viewport = new ScreenViewport(camera);
+        playerTexture = new Texture("player.png");
     }
 
     @Override
@@ -62,7 +68,7 @@ public class WorldRenderer implements Renderer {
         }
 
         batch.draw(
-                Blocks.dirt.texture,
+                playerTexture,
                 world.player.position.x * tileSize,
                 world.player.position.y * tileSize,
                 world.player.width * tileSize,

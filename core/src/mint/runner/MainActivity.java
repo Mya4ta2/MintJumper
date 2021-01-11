@@ -23,6 +23,6 @@ public class MainActivity extends Game {
 	}
 
 	public void loadTextures() {
-		Blocks.dirt.texture = new Texture("badlogic.jpg"); //temp
+		Blocks.dirt.texture = new Texture("dirt.png");
 	}
 }
