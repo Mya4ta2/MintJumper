@@ -2,6 +2,7 @@ package mint.runner.type;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import mint.runner.Vars;
 
 public class Player {
     public float width = 1.5f;
@@ -11,10 +12,12 @@ public class Player {
     public Vector2 oldPosition = new Vector2();
     public Vector2 velocity = new Vector2();
     public Rectangle bounds = new Rectangle();
+    public Rectangle groundHitBox = new Rectangle();
 
     public int MaxHealth = 100;
     public int health;
     public boolean walkLeft = false;
+    public boolean grounded;
 
     public float speed = 8;
     public float sprintSpeed = 12;
@@ -28,6 +31,8 @@ public class Player {
         bounds.y = 0;
         bounds.width = width;
         bounds.height = height;
+        groundHitBox.width = Vars.tileSize;
+        groundHitBox.height = Vars.tileSize;
     }
 
     public Player(Vector2 position) {
@@ -37,6 +42,8 @@ public class Player {
         bounds.y = position.y;
         bounds.width = width;
         bounds.height = height;
+        groundHitBox.width = Vars.tileSize;
+        groundHitBox.height = Vars.tileSize;
     }
 
     public void update(float delta) {
@@ -45,6 +52,8 @@ public class Player {
 
         bounds.x = position.x;
         bounds.y = position.y;
+        groundHitBox.x = position.x;
+        groundHitBox.y = position.y;
 
         if (sprint) currentSpeed = sprintSpeed;
         else currentSpeed = speed;
