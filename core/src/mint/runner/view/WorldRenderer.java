@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Vars;
@@ -31,6 +33,8 @@ public class WorldRenderer implements Renderer {
     public Texture playerRightFailTexture;
     public Texture playerLeftFailTexture;
 
+    public Texture background;
+
     public WorldRenderer(World world) {
         this.world = world;
     }
@@ -47,6 +51,8 @@ public class WorldRenderer implements Renderer {
         playerRightFailTexture = new Texture("player-right-fail.png");
         playerLeftFailTexture = new Texture("player-left-fail.png");
 
+        background = new Texture("background.png");
+
         shapeRenderer = new ShapeRenderer();
     }
 
@@ -54,6 +60,7 @@ public class WorldRenderer implements Renderer {
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        drawBackground(batch);
         drawWorld(batch);
         drawPlayer(batch);
         batch.end();
@@ -116,6 +123,16 @@ public class WorldRenderer implements Renderer {
                 );
             }
         }
+    }
+
+    public void drawBackground(SpriteBatch batch) {
+        batch.draw(
+                background,
+                world.player.position.x * 2,
+                world.player.position.y * 2,
+                world.width * 10 * tileSize,
+                world.height * 10 * tileSize
+        );
     }
 
     public void drawPlayer(SpriteBatch batch) {

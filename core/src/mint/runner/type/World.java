@@ -12,7 +12,7 @@ public class World {
         this.width = width;
         this.height = height;
         tiles = new Tiles(width,height);
-        player = new Player(new Vector2(5,5));
+        player = new Player(new Vector2(width/2 + 5,height/2 + 5));
 
         createTestWorld();
         setTiles();
@@ -20,11 +20,11 @@ public class World {
 
     public void createTestWorld() {
         for (int i = 1; i < width-1; i++) {
-            tiles.get(i,2).block = Blocks.grass;
+            tiles.get(width/2 + i,height/2).block = Blocks.grass;
         }
 
         for (int i = 1; i < width-1; i++) {
-            tiles.get(i,1).block = Blocks.dirt;
+            tiles.get(width/2 + i,height/2-1).block = Blocks.dirt;
         }
     }
     
