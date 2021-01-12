@@ -19,18 +19,12 @@ public class World {
     }
 
     public void createTestWorld() {
-//        for (int i = 0; i < width; i++) {
-//            tiles.get(i,1).block = Blocks.dirt;
-//        }
-//
-//        for (int i = 0; i < width; i++) {
-//            tiles.get(i,0).block = Blocks.dirt;
-//        }
+        for (int i = 1; i < width-1; i++) {
+            tiles.get(i,2).block = Blocks.grass;
+        }
 
-        for (int i = 2; i < width-2; i++) {
-            for (int j = 2; j < height-2; j++) {
-                tiles.get(i,j).block = Blocks.dirt;
-            }
+        for (int i = 1; i < width-1; i++) {
+            tiles.get(i,1).block = Blocks.dirt;
         }
     }
     

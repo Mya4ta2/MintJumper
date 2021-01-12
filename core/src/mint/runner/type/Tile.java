@@ -39,6 +39,10 @@ public class Tile {
         left, right,
         downLeft, down, downRight;
 
+        TextureRegion tmp = neighborAirState.currentBlockTexture;
+        neighborAirState = new NeighborAirState(block.neighborAir);
+        neighborAirState.currentBlockTexture = tmp;
+
         if (block != Blocks.air) {
             upLeft = world.tiles.get(x - 1,y + 1);
             up = world.tiles.get(x,y + 1);

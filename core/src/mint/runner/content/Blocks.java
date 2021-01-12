@@ -7,7 +7,7 @@ import mint.runner.type.Block;
 import mint.runner.type.NeighborAir;
 
 public class Blocks implements ContentList {
-    public static Block air, dirt;
+    public static Block air, dirt, grass;
 
     @Override
     public void load() {
@@ -20,6 +20,12 @@ public class Blocks implements ContentList {
         dirt = new Block("dirt") {
             {
                 neighborAir = MainActivity.getDirt();
+            }
+        };
+
+        grass = new Block("grass") {
+            {
+                neighborAir = MainActivity.getGrass();
             }
         };
     }
