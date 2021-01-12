@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import mint.runner.content.Blocks;
+import mint.runner.content.Bullets;
 import mint.runner.content.Items;
 import mint.runner.content.Sounds;
 import mint.runner.screen.GameScreen;
@@ -24,6 +25,7 @@ public class MainActivity extends Game {
 		new Sounds().load();
 		new Blocks().load();
 		new Items().load();
+		new Bullets().load();
 		loadTextures();
 
 		gameScreen = new GameScreen();
@@ -84,6 +86,6 @@ public class MainActivity extends Game {
 	}
 
 	public void loadTextures() {
-
+		Bullets.bullet.texture = new Texture("dirt.png");
 	}
 }

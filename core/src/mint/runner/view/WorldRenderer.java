@@ -139,7 +139,7 @@ public class WorldRenderer implements Renderer {
             if (world.entitys.array.get(i) instanceof Bullet) {
                 Bullet bullet = (Bullet) world.entitys.array.get(i);
                 batch.draw(
-                        playerRightFailTexture,
+                        bullet.type.texture,
                         bullet.position.x * tileSize,
                         bullet.position.y * tileSize
                 );

@@ -7,6 +7,7 @@ public class Bullet implements Entity{
     public Vector2 velocity = new Vector2();
     public Entity owner;
     public World world;
+    public BulletType type;
 
     public Bullet(Vector2 position, Vector2 velocity, World world) {
         this.position = position;
