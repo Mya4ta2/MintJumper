@@ -3,6 +3,8 @@ package mint.runner.type;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.Vars;
+import mint.runner.audio.SoundPlayer;
+import mint.runner.content.Sounds;
 
 public class Player {
     public float width = 1.5f;
@@ -27,6 +29,7 @@ public class Player {
 
     public void jump() {
         velocity.add(0, jumpHeight * Vars.tileSize * 10);
+        SoundPlayer.play(Sounds.jump);
     }
 
     public Player() {
