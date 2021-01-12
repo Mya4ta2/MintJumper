@@ -26,7 +26,7 @@ public class Player {
     public boolean sprint;
 
     public void jump() {
-        velocity.add(0, jumpHeight * Vars.tileSize);
+        velocity.add(0, jumpHeight * Vars.tileSize * 10);
     }
 
     public Player() {

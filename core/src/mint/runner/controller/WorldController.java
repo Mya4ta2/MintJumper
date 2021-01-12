@@ -64,12 +64,12 @@ public class WorldController {
 
         Vector2 pos = world.player.position;
 
-        Tile left1Tile = world.tiles.get((int) pos.y, (int) pos.x);
-        Tile left2Tile = world.tiles.get((int) pos.y + 1, (int) pos.x);
-        Tile left3Tile = world.tiles.get((int) pos.y + 2, (int) pos.x);
-        Tile right1Tile = world.tiles.get((int) pos.y, (int) pos.x + 1);
-        Tile right2Tile = world.tiles.get((int) pos.y + 1, (int) pos.x + 1);
-        Tile right3Tile = world.tiles.get((int) pos.y + 2, (int) pos.x + 1);
+        Tile left1Tile = world.tiles.get((int) pos.x, (int) pos.y);
+        Tile left2Tile = world.tiles.get((int) pos.x, (int) pos.y + 1);
+        Tile left3Tile = world.tiles.get((int) pos.x, (int) pos.y + 2);
+        Tile right1Tile = world.tiles.get((int) pos.x + 1, (int) pos.y);
+        Tile right2Tile = world.tiles.get((int) pos.x + 1, (int) pos.y + 1);
+        Tile right3Tile = world.tiles.get((int) pos.x + 1, (int) pos.y + 2);
 
         collision =
                 (
