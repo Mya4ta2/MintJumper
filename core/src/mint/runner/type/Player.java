@@ -8,6 +8,10 @@ import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
 
 public class Player {
+    public enum State {
+        WalkLeft, WalkRight
+    }
+
     public float width = 1.5f;
     public float height = 1.5f;
 
@@ -16,6 +20,7 @@ public class Player {
     public Vector2 velocity = new Vector2();
     public Rectangle bounds = new Rectangle();
     public Rectangle groundHitBox = new Rectangle();
+    public State state = State.WalkRight;
 
     public int MaxHealth = 100;
     public int jumpHeight = 5;

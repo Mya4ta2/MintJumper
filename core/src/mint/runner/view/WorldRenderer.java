@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -24,7 +25,8 @@ public class WorldRenderer implements Renderer {
     public Viewport viewport;
     public ShapeRenderer shapeRenderer;
 
-    public Texture playerTexture; //oh no
+    public Texture playerRightWalkTexture; //oh no
+    public Texture playerLeftWalkTexture;
 
     public WorldRenderer(World world) {
         this.world = world;
@@ -37,7 +39,8 @@ public class WorldRenderer implements Renderer {
         camera = new OrthographicCamera();
         camera.zoom = 0.4f;
         viewport = new ScreenViewport(camera);
-        playerTexture = new Texture("player.png");
+        playerRightWalkTexture = new Texture("player.png");
+        playerLeftWalkTexture = new Texture("player-left.png");
 
         shapeRenderer = new ShapeRenderer();
     }
@@ -47,6 +50,7 @@ public class WorldRenderer implements Renderer {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawWorld(batch);
+        drawPlayer(batch);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -107,9 +111,18 @@ public class WorldRenderer implements Renderer {
                 );
             }
         }
+    }
+
+    public void drawPlayer(SpriteBatch batch) {
+        Texture texture = null;
+
+        switch (world.player.state) {
+            case WalkLeft: texture = playerLeftWalkTexture; break;
+            case WalkRight: texture = playerRightWalkTexture; break;
+        }
 
         batch.draw(
-                playerTexture,
+                texture,
                 world.player.position.x * tileSize,
                 world.player.position.y * tileSize,
                 world.player.width * tileSize,

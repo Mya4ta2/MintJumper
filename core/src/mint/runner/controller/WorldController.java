@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.Blocks;
+import mint.runner.type.Player;
 import mint.runner.type.Tile;
 import mint.runner.type.World;
 
@@ -26,13 +27,17 @@ public class WorldController {
     public void processInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             world.player.velocity.x += world.player.currentSpeed;
+            world.player.state = Player.State.WalkRight;
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             world.player.velocity.x -= world.player.currentSpeed;
+            world.player.state = Player.State.WalkLeft;
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && world.player.grounded) {
+        System.out.println(world.player.state);
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && world.player.grounded) {
             world.player.jump();
         }
 
