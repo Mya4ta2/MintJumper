@@ -31,8 +31,8 @@ public class Player {
         bounds.y = 0;
         bounds.width = width;
         bounds.height = height;
-        groundHitBox.width = Vars.tileSize;
-        groundHitBox.height = Vars.tileSize;
+        groundHitBox.width = width;
+        groundHitBox.height = height;
     }
 
     public Player(Vector2 position) {
@@ -42,8 +42,8 @@ public class Player {
         bounds.y = position.y;
         bounds.width = width;
         bounds.height = height;
-        groundHitBox.width = Vars.tileSize;
-        groundHitBox.height = Vars.tileSize;
+        groundHitBox.width = width;
+        groundHitBox.height = height;
     }
 
     public void update(float delta) {
@@ -53,7 +53,7 @@ public class Player {
         bounds.x = position.x;
         bounds.y = position.y;
         groundHitBox.x = position.x;
-        groundHitBox.y = position.y;
+        groundHitBox.y = position.y - groundHitBox.height;
 
         if (sprint) currentSpeed = sprintSpeed;
         else currentSpeed = speed;

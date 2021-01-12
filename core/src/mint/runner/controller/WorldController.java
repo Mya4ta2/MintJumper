@@ -17,9 +17,9 @@ public class WorldController {
     public void update(float delta) {
         world.player.update(delta);
 
+        processGravity();
         checkPlayerGrounded();
         processInput();
-        processGravity();
     }
 
     public void processInput() {
@@ -48,9 +48,9 @@ public class WorldController {
         Vector2 pos = world.player.position;
 
         Tile[] nearTiles = {
-                world.tiles.get((int) pos.y, (int) pos.x),
-                pos.y > world.height ? world.tiles.get((int) pos.y, (int) pos.x - 1) : world.tiles.get((int) pos.y, (int) pos.x),
-                pos.y > world.height ? world.tiles.get((int) pos.y, (int) pos.x + 1) : world.tiles.get((int) pos.y, (int) pos.x)
+                world.tiles.get((int) pos.x, (int) pos.y),
+                world.tiles.get((int) pos.x - 1, (int) pos.y),
+                world.tiles.get((int) pos.x + 1, (int) pos.y)
         };
 
         for (int i = 0; i < nearTiles.length; i++) {
@@ -60,7 +60,6 @@ public class WorldController {
         }
 
         world.player.grounded = count > 0;
-        System.out.println(count > 0);
     }
 
     public void processGravity() {

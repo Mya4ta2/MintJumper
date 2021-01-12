@@ -12,12 +12,14 @@ public class World {
         this.width = width;
         this.height = height;
         tiles = new Tiles(width,height);
-        player = new Player(new Vector2(3,3));
+        player = new Player(new Vector2(4,4));
 
         createTestWorld();
     }
 
     public void createTestWorld() {
-        tiles.get(1,0).block = Blocks.dirt;
+        for (int i = 0; i < width; i++) {
+            tiles.get(i,1).block = Blocks.dirt;
+        }
     }
 }
