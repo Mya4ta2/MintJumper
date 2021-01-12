@@ -26,6 +26,11 @@ public class World {
         for (int i = 1; i < width-1; i++) {
             tiles.get(width/2 + i,height/2-1).block = Blocks.dirt;
         }
+
+        for (int i = 1; i < width-1; i++) {
+            tiles.get(i,2).block = Blocks.grass;
+            tiles.get(i,1).block = Blocks.grass;
+        }
     }
     
     public void setTiles() {

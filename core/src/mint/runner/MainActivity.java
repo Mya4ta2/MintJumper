@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import mint.runner.content.Blocks;
+import mint.runner.content.Items;
 import mint.runner.content.Sounds;
 import mint.runner.screen.GameScreen;
 import mint.runner.type.NeighborAir;
@@ -22,6 +23,7 @@ public class MainActivity extends Game {
 	public void create() {
 		new Sounds().load();
 		new Blocks().load();
+		new Items().load();
 		loadTextures();
 
 		gameScreen = new GameScreen();
