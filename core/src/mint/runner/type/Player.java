@@ -15,6 +15,7 @@ public class Player {
     public Rectangle groundHitBox = new Rectangle();
 
     public int MaxHealth = 100;
+    public int jumpHeight = 5;
     public int health;
     public boolean walkLeft = false;
     public boolean grounded;
@@ -23,6 +24,10 @@ public class Player {
     public float sprintSpeed = 12;
     public float currentSpeed = speed;
     public boolean sprint;
+
+    public void jump() {
+        velocity.add(0, jumpHeight * Vars.tileSize);
+    }
 
     public Player() {
         this.position = Vector2.Zero;

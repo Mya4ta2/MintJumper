@@ -24,20 +24,16 @@ public class WorldController {
     }
 
     public void processInput() {
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            world.player.velocity.y += world.player.currentSpeed;
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            world.player.velocity.y -= world.player.currentSpeed;
-        }
-
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             world.player.velocity.x += world.player.currentSpeed;
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             world.player.velocity.x -= world.player.currentSpeed;
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && world.player.grounded) {
+            world.player.jump();
         }
 
         world.player.sprint = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
@@ -98,7 +94,7 @@ public class WorldController {
 
     public void processGravity() {
         if (!world.player.grounded) {
-            world.player.position.y -= 0.5f;
+            world.player.velocity.y -= 10f;
         }
     }
 }
