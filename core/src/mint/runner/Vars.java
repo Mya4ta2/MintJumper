@@ -1,5 +1,5 @@
 package mint.runner;
 
 public class Vars {
-    public static int tileSize = 8;
+    public static int tileSize = 16;
 }

@@ -35,7 +35,7 @@ public class WorldRenderer implements Renderer {
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
-        camera.zoom = 0.2f;
+        camera.zoom = 0.4f;
         viewport = new ScreenViewport(camera);
         playerTexture = new Texture("player.png");
 
