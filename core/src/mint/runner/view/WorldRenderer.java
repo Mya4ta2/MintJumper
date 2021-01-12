@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Vars;
@@ -27,6 +28,8 @@ public class WorldRenderer implements Renderer {
 
     public Texture playerRightWalkTexture; //oh no
     public Texture playerLeftWalkTexture;
+    public Texture playerRightFailTexture;
+    public Texture playerLeftFailTexture;
 
     public WorldRenderer(World world) {
         this.world = world;
@@ -41,6 +44,8 @@ public class WorldRenderer implements Renderer {
         viewport = new ScreenViewport(camera);
         playerRightWalkTexture = new Texture("player.png");
         playerLeftWalkTexture = new Texture("player-left.png");
+        playerRightFailTexture = new Texture("player-right-fail.png");
+        playerLeftFailTexture = new Texture("player-left-fail.png");
 
         shapeRenderer = new ShapeRenderer();
     }
@@ -119,6 +124,8 @@ public class WorldRenderer implements Renderer {
         switch (world.player.state) {
             case WalkLeft: texture = playerLeftWalkTexture; break;
             case WalkRight: texture = playerRightWalkTexture; break;
+            case LeftFail: texture = playerLeftFailTexture; break;
+            case RightFail: texture = playerRightFailTexture; break;
         }
 
         batch.draw(

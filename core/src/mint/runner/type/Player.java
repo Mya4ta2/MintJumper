@@ -9,7 +9,7 @@ import mint.runner.content.Sounds;
 
 public class Player {
     public enum State {
-        WalkLeft, WalkRight
+        WalkLeft, WalkRight, LeftFail, RightFail
     }
 
     public float width = 1.5f;
@@ -67,7 +67,7 @@ public class Player {
         bounds.x = position.x;
         bounds.y = position.y;
         groundHitBox.x = position.x;
-        groundHitBox.y = position.y - groundHitBox.height;
+        groundHitBox.y = position.y - 0.2f;
 
         if (sprint) currentSpeed = sprintSpeed;
         else currentSpeed = speed;

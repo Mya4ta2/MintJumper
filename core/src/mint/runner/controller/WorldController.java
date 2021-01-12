@@ -35,8 +35,6 @@ public class WorldController {
             world.player.state = Player.State.WalkLeft;
         }
 
-        System.out.println(world.player.state);
-
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && world.player.grounded) {
             world.player.jump();
         }
@@ -50,9 +48,9 @@ public class WorldController {
         Vector2 pos = world.player.position;
 
         Tile[] nearTiles = {
-                world.tiles.get((int) pos.x, (int) pos.y),
-                world.tiles.get((int) pos.x - 1, (int) pos.y),
-                world.tiles.get((int) pos.x + 1, (int) pos.y)
+                world.tiles.get((int) pos.x, (int) pos.y - 1),
+                world.tiles.get((int) pos.x - 1, (int) pos.y - 1),
+                world.tiles.get((int) pos.x + 1, (int) pos.y - 1)
         };
 
         for (int i = 0; i < nearTiles.length; i++) {
@@ -101,5 +99,8 @@ public class WorldController {
         if (!world.player.grounded) {
             world.player.velocity.y -= 10f;
         }
+
+        if (world.player.velocity.y < 0 && world.player.velocity.x > 0) world.player.state = Player.State.RightFail;
+        if (world.player.velocity.y < 0 && world.player.velocity.x < 0) world.player.state = Player.State.LeftFail;
     }
 }
