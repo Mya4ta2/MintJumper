@@ -7,6 +7,4 @@ public class NeighborAir {
     upLeft, up, upRight,
     left, middle, right,
     downLeft, down, downRight;
-
-    public TextureRegion currentTexture;
 }

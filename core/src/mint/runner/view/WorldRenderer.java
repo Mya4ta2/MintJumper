@@ -51,7 +51,7 @@ public class WorldRenderer implements Renderer {
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        drawDebugRectangles();
+        //drawDebugRectangles();
         shapeRenderer.end();
 
         camera.position.set(world.player.position.x * tileSize, world.player.position.y * tileSize,0);
@@ -99,7 +99,7 @@ public class WorldRenderer implements Renderer {
         for (int i = 0; i < array.length; i++) {
             if (array[i].block != Blocks.air) {
                 batch.draw(
-                        array[i].block.neighborAir.currentTexture,
+                        array[i].neighborAirState.currentBlockTexture,
                         array[i].x * tileSize,
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,

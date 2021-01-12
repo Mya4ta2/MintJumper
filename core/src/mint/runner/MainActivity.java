@@ -40,8 +40,23 @@ public class MainActivity extends Game {
 				downLeft = tmp[2][0];
 				down = tmp[2][1];
 				downRight = tmp[2][2];
+			}
+		};
+	}
 
-				currentTexture = middle;
+	public static NeighborAir getAir() {
+		//empty textures
+		return new NeighborAir() {
+			{
+				upLeft = new TextureRegion();
+				up = new TextureRegion();
+				upRight = new TextureRegion();
+				left = new TextureRegion();
+				middle = new TextureRegion();
+				right = new TextureRegion();
+				downLeft = new TextureRegion();
+				down = new TextureRegion();
+				downRight = new TextureRegion();
 			}
 		};
 	}

@@ -13,7 +13,7 @@ public class Blocks implements ContentList {
     public void load() {
         air = new Block("air") {
             {
-
+                neighborAir = MainActivity.getDirt();
             }
         };
 

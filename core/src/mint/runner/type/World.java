@@ -15,15 +15,28 @@ public class World {
         player = new Player(new Vector2(5,5));
 
         createTestWorld();
+        setTiles();
     }
 
     public void createTestWorld() {
-        for (int i = 0; i < width; i++) {
-            tiles.get(i,1).block = Blocks.dirt;
-        }
+//        for (int i = 0; i < width; i++) {
+//            tiles.get(i,1).block = Blocks.dirt;
+//        }
+//
+//        for (int i = 0; i < width; i++) {
+//            tiles.get(i,0).block = Blocks.dirt;
+//        }
 
-        for (int i = 0; i < width; i++) {
-            tiles.get(i,0).block = Blocks.dirt;
+        for (int i = 2; i < width-2; i++) {
+            for (int j = 2; j < height-2; j++) {
+                tiles.get(i,j).block = Blocks.dirt;
+            }
+        }
+    }
+    
+    public void setTiles() {
+        for (int i = 0; i < tiles.array.length; i++) {
+            tiles.array[i].setNeighborAir(this);
         }
     }
 }
