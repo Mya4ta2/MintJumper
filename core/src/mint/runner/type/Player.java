@@ -1,5 +1,6 @@
 package mint.runner.type;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.Vars;
@@ -7,8 +8,8 @@ import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
 
 public class Player {
-    public float width = 1.5f;
-    public float height = 1.5f;
+    public float width = 2.5f;
+    public float height = 2.5f;
 
     public Vector2 position = new Vector2();
     public Vector2 oldPosition = new Vector2();
