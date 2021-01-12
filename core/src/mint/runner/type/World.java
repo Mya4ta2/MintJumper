@@ -6,12 +6,14 @@ import mint.runner.content.Blocks;
 public class World {
     public final int width, height;
     public final Tiles tiles;
+    public final Entitys entitys;
     public Player player;
 
     public World(int width, int height) {
         this.width = width;
         this.height = height;
-        tiles = new Tiles(width,height);
+        tiles = new Tiles(width, height);
+        entitys = new Entitys();
         player = new Player(new Vector2(width/2 + 5,height/2 + 5));
 
         createTestWorld();

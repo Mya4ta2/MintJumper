@@ -15,9 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
-import mint.runner.type.Player;
-import mint.runner.type.Tile;
-import mint.runner.type.World;
+import mint.runner.type.*;
 
 import static mint.runner.Vars.tileSize;
 
@@ -63,6 +61,7 @@ public class WorldRenderer implements Renderer {
         drawBackground(batch);
         drawWorld(batch);
         drawPlayer(batch);
+        drawBullets(batch);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -133,6 +132,19 @@ public class WorldRenderer implements Renderer {
                 world.width * 10 * tileSize,
                 world.height * 10 * tileSize
         );
+    }
+
+    public void drawBullets(SpriteBatch batch) {
+        for (int i = 0; i < world.entitys.array.size; i++) {
+            if (world.entitys.array.get(i) instanceof Bullet) {
+                Bullet bullet = (Bullet) world.entitys.array.get(i);
+                batch.draw(
+                        playerRightFailTexture,
+                        bullet.position.x * tileSize,
+                        bullet.position.y * tileSize
+                );
+            }
+        }
     }
 
     public void drawPlayer(SpriteBatch batch) {
