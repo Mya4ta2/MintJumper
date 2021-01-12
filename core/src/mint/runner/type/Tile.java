@@ -14,8 +14,8 @@ public class Tile {
         this.y = y;
         this.block = block;
 
-        bounds.width = Vars.tileSize;
-        bounds.height = Vars.tileSize;
+        bounds.width = 1;
+        bounds.height = 1;
         bounds.x = x;
         bounds.y = y;
     }
@@ -24,8 +24,8 @@ public class Tile {
         this.x = x;
         this.y = y;
 
-        bounds.width = Vars.tileSize;
-        bounds.height = Vars.tileSize;
+        bounds.width = 1;
+        bounds.height = 1;
         bounds.x = x;
         bounds.y = y;
     }

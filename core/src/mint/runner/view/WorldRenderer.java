@@ -51,7 +51,7 @@ public class WorldRenderer implements Renderer {
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        //drawDebugRectangles();
+        drawDebugRectangles();
         shapeRenderer.end();
 
         camera.position.set(world.player.position.x * tileSize, world.player.position.y * tileSize,0);

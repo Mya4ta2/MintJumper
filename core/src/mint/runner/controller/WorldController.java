@@ -17,9 +17,10 @@ public class WorldController {
     public void update(float delta) {
         world.player.update(delta);
 
-        processGravity();
-        checkPlayerGrounded();
         processInput();
+        checkPlayerGrounded();
+        processGravity();
+        processCollisions();
     }
 
     public void processInput() {
@@ -60,6 +61,39 @@ public class WorldController {
         }
 
         world.player.grounded = count > 0;
+    }
+
+    public void processCollisions() {
+        boolean collision = false;
+
+        Vector2 pos = world.player.position;
+
+        Tile left1Tile = world.tiles.get((int) pos.y, (int) pos.x);
+        Tile left2Tile = world.tiles.get((int) pos.y + 1, (int) pos.x);
+        Tile left3Tile = world.tiles.get((int) pos.y + 2, (int) pos.x);
+        Tile right1Tile = world.tiles.get((int) pos.y, (int) pos.x + 1);
+        Tile right2Tile = world.tiles.get((int) pos.y + 1, (int) pos.x + 1);
+        Tile right3Tile = world.tiles.get((int) pos.y + 2, (int) pos.x + 1);
+
+        collision =
+                (
+                        left1Tile.block != Blocks.air &&
+                                world.player.bounds.overlaps(left1Tile.bounds) ||
+                                left2Tile.block != Blocks.air &&
+                                        world.player.bounds.overlaps(left2Tile.bounds) ||
+                                left3Tile.block != Blocks.air &&
+                                        world.player.bounds.overlaps(left3Tile.bounds) ||
+                                right1Tile.block != Blocks.air &&
+                                        world.player.bounds.overlaps(right1Tile.bounds) ||
+                                right2Tile.block != Blocks.air &&
+                                        world.player.bounds.overlaps(right2Tile.bounds) ||
+                                right3Tile.block != Blocks.air &&
+                                        world.player.bounds.overlaps(right3Tile.bounds)
+                );
+
+        if (collision) {
+            world.player.position.set(world.player.oldPosition);
+        }
     }
 
     public void processGravity() {

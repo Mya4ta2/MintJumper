@@ -12,7 +12,7 @@ public class World {
         this.width = width;
         this.height = height;
         tiles = new Tiles(width,height);
-        player = new Player(new Vector2(4,4));
+        player = new Player(new Vector2(5,5));
 
         createTestWorld();
     }
