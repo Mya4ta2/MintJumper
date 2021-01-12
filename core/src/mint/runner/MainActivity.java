@@ -7,8 +7,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import mint.runner.content.Blocks;
 import mint.runner.screen.GameScreen;
+import mint.runner.type.NeighborAir;
+
+import java.util.Arrays;
 
 public class MainActivity extends Game {
 	public Screen gameScreen;
@@ -22,7 +26,27 @@ public class MainActivity extends Game {
 		setScreen(gameScreen);
 	}
 
+	public static NeighborAir getDirt() {
+		final TextureRegion[][] tmp = new TextureRegion(new Texture("dirt.png")).split(Vars.tileSize, Vars.tileSize);
+
+		return new NeighborAir() {
+			{
+				upLeft = tmp[0][0];
+				up = tmp[0][1];
+				upRight = tmp[0][2];
+				left = tmp[1][0];
+				middle = tmp[1][1];
+				right = tmp[1][2];
+				downLeft = tmp[2][0];
+				down = tmp[2][1];
+				downRight = tmp[2][2];
+
+				currentTexture = middle;
+			}
+		};
+	}
+
 	public void loadTextures() {
-		Blocks.dirt.texture = new Texture("dirt.png");
+
 	}
 }

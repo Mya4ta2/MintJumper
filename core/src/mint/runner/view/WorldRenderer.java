@@ -99,7 +99,7 @@ public class WorldRenderer implements Renderer {
         for (int i = 0; i < array.length; i++) {
             if (array[i].block != Blocks.air) {
                 batch.draw(
-                        array[i].block.texture,
+                        array[i].block.neighborAir.currentTexture,
                         array[i].x * tileSize,
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,

@@ -21,5 +21,9 @@ public class World {
         for (int i = 0; i < width; i++) {
             tiles.get(i,1).block = Blocks.dirt;
         }
+
+        for (int i = 0; i < width; i++) {
+            tiles.get(i,0).block = Blocks.dirt;
+        }
     }
 }
