@@ -33,6 +33,5 @@ public class Blocks implements ContentList {
             }
         };
         blocks.add(grass);
-
     }
 }

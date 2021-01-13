@@ -32,7 +32,6 @@ public class MainActivity extends Game {
 		setScreen(gameScreen);
 
 		setScreen(new WorldEditorScreen()); //temp
-
 	}
 
 	public static NeighborAir getDirt() {
