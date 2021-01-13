@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
@@ -164,5 +165,7 @@ public class WorldRenderer implements Renderer {
                 world.player.width * tileSize,
                 world.player.height * tileSize
         );
+
+        if (world.player.weapon != null && world.player.weapon.sprite != null) world.player.weapon.sprite.draw(batch);
     }
 }

@@ -41,6 +41,10 @@ public class WorldController {
             world.player.jump();
         }
 
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+            if (world.player.weapon != null) world.player.weapon.shoot();
+        }
+
         world.player.sprint = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
     }
 

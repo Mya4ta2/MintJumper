@@ -9,10 +9,11 @@ public class Bullet implements Entity{
     public World world;
     public BulletType type;
 
-    public Bullet(Vector2 position, Vector2 velocity, World world) {
+    public Bullet(Vector2 position, Vector2 velocity, World world, BulletType type) {
         this.position = position;
         this.velocity = velocity;
         this.world = world;
+        this.type = type;
 
         world.entitys.add(this);
     }

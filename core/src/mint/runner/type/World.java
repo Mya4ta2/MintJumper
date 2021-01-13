@@ -1,6 +1,7 @@
 package mint.runner.type;
 
 import com.badlogic.gdx.math.Vector2;
+import mint.runner.Vars;
 import mint.runner.content.Blocks;
 
 public class World {
@@ -18,6 +19,8 @@ public class World {
 
         createTestWorld();
         setTiles();
+
+        Vars.world = this;
     }
 
     public void createTestWorld() {

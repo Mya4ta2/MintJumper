@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import mint.runner.Vars;
 import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
+import mint.runner.content.Weapons;
 
 public class Player {
     public enum State {
@@ -21,6 +22,8 @@ public class Player {
     public Rectangle bounds = new Rectangle();
     public Rectangle groundHitBox = new Rectangle();
     public State state = State.WalkRight;
+    public Weapon weapon;
+    public Vector2 weaponSlotPos = new Vector2();
 
     public int MaxHealth = 100;
     public int jumpHeight = 5;
@@ -63,6 +66,11 @@ public class Player {
     public void update(float delta) {
         oldPosition.set(position);
         position.add(velocity.scl(delta));
+        if (weapon == null) weapon = new Weapon(Weapons.test);
+        if (weapon != null) weapon.player = this;
+
+        weaponSlotPos.set(position);
+        weaponSlotPos.add(0.5f,0.6f); //temp
 
         bounds.x = position.x;
         bounds.y = position.y;
