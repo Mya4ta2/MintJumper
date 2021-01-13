@@ -8,7 +8,7 @@ import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
 import mint.runner.content.Weapons;
 
-public class Player {
+public class Player implements Entity{
     public enum State {
         WalkLeft, WalkRight, LeftFail, RightFail
     }
@@ -50,6 +50,7 @@ public class Player {
         bounds.height = height;
         groundHitBox.width = width;
         groundHitBox.height = height;
+        Vars.world.entitys.add(this);
     }
 
     public Player(Vector2 position) {
@@ -61,8 +62,10 @@ public class Player {
         bounds.height = height;
         groundHitBox.width = width;
         groundHitBox.height = height;
+        Vars.world.entitys.add(this);
     }
 
+    @Override
     public void update(float delta) {
         oldPosition.set(position);
         position.add(velocity.scl(delta));

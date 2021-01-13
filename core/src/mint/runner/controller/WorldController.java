@@ -17,7 +17,6 @@ public class WorldController {
     }
 
     public void update(float delta) {
-        world.player.update(delta);
         world.entitys.updateAll(delta);
 
         processInput();

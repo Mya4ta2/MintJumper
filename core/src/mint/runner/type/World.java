@@ -13,14 +13,13 @@ public class World {
     public World(int width, int height) {
         this.width = width;
         this.height = height;
+        Vars.world = this;
         tiles = new Tiles(width, height);
         entitys = new Entitys();
         player = new Player(new Vector2(width/2 + 5,height/2 + 5));
 
         createTestWorld();
         setTiles();
-
-        Vars.world = this;
     }
 
     public void createTestWorld() {
