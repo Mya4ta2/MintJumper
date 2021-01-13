@@ -44,6 +44,8 @@ public class EditorUIRenderer implements Renderer {
 
         camera.update();
         viewport.apply();
+
+        EditorVars.currentContentSelected = menu.currentContent;
     }
 
     @Override

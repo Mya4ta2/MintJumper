@@ -6,9 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Button extends Actor {
-
-    private boolean pressed = false;
-    private boolean useSound = true;
+    public boolean pressed = false;
+    public boolean useSound = true;
 
     private Texture unPressedButton;
     private Texture PressedButton;

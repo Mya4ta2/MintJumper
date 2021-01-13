@@ -18,17 +18,15 @@ import mint.runner.ctype.MappableContent;
 import mint.runner.type.Block;
 import mint.runner.type.ContentType;
 
-import java.lang.reflect.Field;
-
 public class ContentSelectMenu extends Actor {
     public static final float separator = 2.5f;
     public ContentType contentType;
     public Texture unPressedButton;
     public Texture pressedButton;
     public Sprite black;
+    public MappableContent currentContent;
 
-    public ImageButton[] buttons;
-    public int widthInButtons;
+    public ContentImageButton[] buttons;
 
     public ContentSelectMenu(ContentType contentType, Texture unPressedButton, Texture pressedButton) {
         this.contentType = contentType;
@@ -45,13 +43,28 @@ public class ContentSelectMenu extends Actor {
 
     public void fill() {
         if (contentType == ContentType.block) {
-            buttons = new ImageButton[Blocks.blocks.size];
+            buttons = new ContentImageButton[Blocks.blocks.size];
             for (int i = 0; i < buttons.length; i++) {
-                buttons[i] = new ImageButton(
+                buttons[i] = new ContentImageButton(
                         unPressedButton,
                         pressedButton,
                         Blocks.blocks.get(i).neighborAir.up.getTexture());
+                buttons[i].content = Blocks.blocks.get(i);
                 buttons[i].setSize(Vars.tileSize * 2,Vars.tileSize * 2);
+            }
+
+            //oh no code
+            for (int i = 0; i < buttons.length; i++) {
+                final int finalI = i;
+                buttons[i].addListener(new InputListener(){
+                    ContentImageButton button1 = buttons[finalI];
+
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        currentContent = button1.content;
+                        return super.touchDown(event, x, y, pointer, button);
+                    }
+                });
             }
         }
     }
@@ -65,7 +78,6 @@ public class ContentSelectMenu extends Actor {
 
             if ((Vars.tileSize * x * separator) > getWidth()) {
                 y++;
-                widthInButtons = x;
                 x = 0;
             }
 
