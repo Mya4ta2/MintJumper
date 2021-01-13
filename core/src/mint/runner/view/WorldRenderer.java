@@ -128,13 +128,11 @@ public class WorldRenderer implements Renderer {
     public void drawBackground(SpriteBatch batch) {
         batch.draw(
                 background,
-                0,
-                0,
+                world.player.position.x * 2,
+                world.player.position.y * 2,
                 world.width * tileSize,
                 world.height * tileSize
         );
-
-        System.out.println(world.width * tileSize + " " + world.height * tileSize);
     }
 
     public void drawBullets(SpriteBatch batch) {

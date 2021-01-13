@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.controller.WorldController;
+import mint.runner.maps.WorldReader;
 import mint.runner.type.World;
 import mint.runner.view.WorldRenderer;
 
@@ -18,7 +19,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        world = new World(50,100);
+        try {
+            world = WorldReader.readFile(Gdx.files.internal("Rock.rsav"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         worldRenderer = new WorldRenderer(world);
         worldRenderer.create();
         worldController = new WorldController(world);

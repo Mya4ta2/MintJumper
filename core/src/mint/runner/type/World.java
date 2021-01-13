@@ -8,13 +8,15 @@ import mint.runner.content.Blocks;
 public class World {
     public final int width, height;
     public final Tiles tiles;
+    public final String name;
     public final Entitys entitys;
     public Color backgroundColor;
     public Player player;
 
-    public World(int width, int height) {
+    public World(int width, int height, String name) {
         this.width = width;
         this.height = height;
+        this.name = name;
         Vars.world = this;
         tiles = new Tiles(width, height);
         entitys = new Entitys();
