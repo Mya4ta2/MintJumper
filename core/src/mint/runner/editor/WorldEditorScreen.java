@@ -12,6 +12,7 @@ import mint.runner.type.World;
 public class WorldEditorScreen implements Screen {
     public World world;
     public EditorRenderer worldRenderer;
+    public EditorUIRenderer uiRenderer;
     public EditorController controller;
 
     public OrthographicCamera camera;
@@ -22,6 +23,8 @@ public class WorldEditorScreen implements Screen {
         world = new World(50,50,"test");
         world.backgroundColor = Color.FIREBRICK;
         worldRenderer = new EditorRenderer(world);
+        uiRenderer = new EditorUIRenderer();
+        uiRenderer.create();
         worldRenderer.create();
         controller = new EditorController(world);
 
@@ -39,6 +42,7 @@ public class WorldEditorScreen implements Screen {
         camera.update();
 
         worldRenderer.render(delta);
+        uiRenderer.render(delta);
         controller.update(delta);
         viewport.apply();
     }
@@ -46,6 +50,7 @@ public class WorldEditorScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         worldRenderer.resize(width, height);
+        uiRenderer.resize(width, height);
         viewport.update(width, height);
     }
 
