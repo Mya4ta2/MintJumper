@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
 import mint.runner.type.ContentType;
