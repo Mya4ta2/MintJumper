@@ -2,13 +2,16 @@ package mint.runner.editor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
 import mint.runner.type.ContentType;
+import mint.runner.ui.Button;
 import mint.runner.ui.ContentSelectMenu;
+import mint.runner.ui.ImageButton;
 
 public class EditorUIRenderer implements Renderer {
     public OrthographicCamera camera;
@@ -23,10 +26,14 @@ public class EditorUIRenderer implements Renderer {
         viewport = new ScreenViewport(camera);
         stage = new Stage();
 
-        menu = new ContentSelectMenu(ContentType.block);
+        menu = new ContentSelectMenu(ContentType.block, new Texture("buttonUp.png"), new Texture("buttonDown.png"));
         menu.setPosition(0, 0);
         stage.addActor(menu);
         stage.setViewport(viewport);
+
+        for (int i = 0; i < menu.buttons.length; i++) {
+            stage.addActor(menu.buttons[i]);
+        }
     }
 
     @Override

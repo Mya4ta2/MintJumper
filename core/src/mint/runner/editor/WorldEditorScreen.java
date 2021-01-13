@@ -45,6 +45,8 @@ public class WorldEditorScreen implements Screen {
         uiRenderer.render(delta);
         controller.update(delta);
         viewport.apply();
+
+        Gdx.input.setInputProcessor(uiRenderer.stage);
     }
 
     @Override
