@@ -1,5 +1,6 @@
 package mint.runner.type;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
@@ -8,6 +9,7 @@ public class World {
     public final int width, height;
     public final Tiles tiles;
     public final Entitys entitys;
+    public Color backgroundColor;
     public Player player;
 
     public World(int width, int height) {
@@ -31,10 +33,12 @@ public class World {
             tiles.get(width/2 + i,height/2-1).block = Blocks.dirt;
         }
 
-        for (int i = 1; i < width-1; i++) {
+        for (int i = 1; i < width; i++) {
             tiles.get(i,2).block = Blocks.grass;
             tiles.get(i,1).block = Blocks.grass;
         }
+
+        backgroundColor = Color.valueOf("A4DDDB");
     }
     
     public void setTiles() {

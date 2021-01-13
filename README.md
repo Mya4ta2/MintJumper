@@ -5,7 +5,7 @@ jumper-shooter game writen on LibGDX
 ### Desktop build jar
 1. install Java JDK 11 or 8 (14 JDK and 15 JDK work incorrect with Libgdx)
 2. run `gradlew desktop:dist`
-3. compiled .jar file placed in `desktop\build\libs\RyzikGame.jar`
+3. compiled .jar file placed in `desktop\build\libs\`
 
 ### Desktop run
 1. install Java JDK 11 or 8 (14 JDK and 15 JDK work incorrect with Libgdx)
