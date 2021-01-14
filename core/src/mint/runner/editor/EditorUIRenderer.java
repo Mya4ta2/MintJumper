@@ -49,9 +49,6 @@ public class EditorUIRenderer implements Renderer {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        if (EditorVars.currentContentSelected != null) {
-            batch.draw(((Block) EditorVars.currentContentSelected).neighborAir.up, Cursor.x, Cursor.y);
-        }
         batch.end();
 
         camera.update();

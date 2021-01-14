@@ -1,5 +1,6 @@
 package mint.runner.editor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,12 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import mint.runner.Cursor;
+import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
-import mint.runner.type.Bullet;
-import mint.runner.type.Player;
-import mint.runner.type.Tile;
-import mint.runner.type.World;
+import mint.runner.type.*;
 
 import static mint.runner.Vars.tileSize;
 
@@ -59,14 +59,20 @@ public class EditorRenderer implements Renderer {
         drawWorld(batch);
         drawPlayer(batch);
         drawBullets(batch);
+
+        if (EditorVars.currentContentSelected != null) {
+            batch.draw(((Block) EditorVars.currentContentSelected).neighborAir.up, Cursor.worldX, Cursor.worldY);
+        }
+
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         //drawDebugRectangles();
+        drawCursorHitbox();
         shapeRenderer.end();
 
-        camera.position.set(world.player.position.x * tileSize, world.player.position.y * tileSize,0);
+        camera.position.set((world.player.position.x * tileSize), (world.player.position.y * tileSize),0);
         camera.update();
         viewport.apply();
     }
@@ -74,6 +80,14 @@ public class EditorRenderer implements Renderer {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
+    }
+
+    public void drawCursorHitbox() {
+        shapeRenderer.rect(
+                (int) (Cursor.worldX / tileSize) * tileSize,
+                (int) (Cursor.worldY / tileSize) * tileSize,
+                tileSize,
+                tileSize);
     }
 
     public void drawDebugRectangles() {

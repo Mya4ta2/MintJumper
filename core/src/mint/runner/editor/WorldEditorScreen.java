@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Cursor;
+import mint.runner.Vars;
 import mint.runner.type.World;
 
 public class WorldEditorScreen implements Screen {
@@ -15,9 +16,6 @@ public class WorldEditorScreen implements Screen {
     public EditorRenderer worldRenderer;
     public EditorUIRenderer uiRenderer;
     public EditorController controller;
-
-    public OrthographicCamera camera;
-    public Viewport viewport;
 
     @Override
     public void show() {
@@ -28,9 +26,6 @@ public class WorldEditorScreen implements Screen {
         uiRenderer.create();
         worldRenderer.create();
         controller = new EditorController(world);
-
-        camera = new OrthographicCamera();
-        viewport = new ScreenViewport(camera);
     }
 
     @Override
@@ -39,13 +34,9 @@ public class WorldEditorScreen implements Screen {
         Gdx.gl20.glClearColor(bgColor.r, bgColor.g, bgColor.b,1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.position.set(world.player.position, 0);
-        camera.update();
-
         worldRenderer.render(delta);
         uiRenderer.render(delta);
         controller.update(delta);
-        viewport.apply();
 
         Gdx.input.setInputProcessor(uiRenderer.stage);
         setCursor();
@@ -55,7 +46,6 @@ public class WorldEditorScreen implements Screen {
     public void resize(int width, int height) {
         worldRenderer.resize(width, height);
         uiRenderer.resize(width, height);
-        viewport.update(width, height);
     }
 
     @Override
@@ -79,16 +69,10 @@ public class WorldEditorScreen implements Screen {
     }
 
     public void setCursor() {
-        int x = Gdx.input.getX();
-        int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+        Cursor.x = (int)(Gdx.input.getX() + (Gdx.graphics.getWidth() / 2));
+        Cursor.y = (int)(worldRenderer.camera.viewportHeight - Gdx.input.getY() + (Gdx.graphics.getHeight() / 2));
 
-        int worldX = (int) (worldRenderer.camera.position.x + x);
-        int worldY = (int) (worldRenderer.camera.position.y + y);
-
-        Cursor.x = x;
-        Cursor.y = y;
-        Cursor.worldX = worldX;
-        Cursor.worldY = worldY;
-        Cursor.worldPosition.set(worldX, worldY);
+        Cursor.worldX = (int) (worldRenderer.camera.position.x + Cursor.x - Gdx.graphics.getWidth());
+        Cursor.worldY = (int) (worldRenderer.camera.position.y + Cursor.y - Gdx.graphics.getHeight());
     }
 }

@@ -72,8 +72,8 @@ public class GameScreen implements Screen {
         int x = Gdx.input.getX();
         int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-        int worldX = (int) (worldRenderer.camera.position.x + x);
-        int worldY = (int) (worldRenderer.camera.position.y + y);
+        int worldX = (int) ((worldRenderer.camera.position.x - worldRenderer.camera.viewportWidth/2) + x);
+        int worldY = (int) ((worldRenderer.camera.position.y - worldRenderer.camera.viewportHeight/2) + y);
 
         Cursor.x = x;
         Cursor.y = y;
