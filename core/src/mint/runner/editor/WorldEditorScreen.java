@@ -20,7 +20,6 @@ public class WorldEditorScreen implements Screen {
     @Override
     public void show() {
         world = new World(50,50,"test");
-        world.backgroundColor = Color.FIREBRICK;
         worldRenderer = new EditorRenderer(world);
         uiRenderer = new EditorUIRenderer();
         uiRenderer.create();

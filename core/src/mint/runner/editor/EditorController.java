@@ -54,8 +54,8 @@ public class EditorController {
             System.out.println(x + " " + y);
             if (EditorVars.currentContentSelected != null)
                 if (
-                        x > 0 && x < world.width &&
-                        y > 0 && y < world.height
+                        x >= 0 && x <= world.width &&
+                        y >= 0 && y <= world.height
                 ) {
                     world.tiles.get(x, y).block = (Block) EditorVars.currentContentSelected;
                 }

@@ -70,6 +70,7 @@ public class EditorRenderer implements Renderer {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         //drawDebugRectangles();
         drawCursorHitbox();
+        drawWorldBounds();
         shapeRenderer.end();
 
         camera.position.set((world.player.position.x * tileSize), (world.player.position.y * tileSize),0);
@@ -88,6 +89,10 @@ public class EditorRenderer implements Renderer {
                 (int) (Cursor.worldY / tileSize) * tileSize,
                 tileSize,
                 tileSize);
+    }
+
+    public void drawWorldBounds() {
+        shapeRenderer.rect(0,0,world.width * tileSize,world.height * tileSize);
     }
 
     public void drawDebugRectangles() {

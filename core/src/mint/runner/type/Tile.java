@@ -35,23 +35,41 @@ public class Tile {
 
     public void setNeighborAir(World world) {
         Tile
-        upLeft, up, upRight,
-        left, right,
-        downLeft, down, downRight;
+        upLeft = null, up = null, upRight = null,
+        left = null, right = null,
+        downLeft = null, down = null, downRight = null;
+
+        Tile emptyTile = new Tile(0,0);
+
+        boolean leftWorldEnd = false, rightWorldEnd = false, upWorldEnd = false, downWorldEnd = false;
 
         TextureRegion tmp = neighborAirState.currentBlockTexture;
         neighborAirState = new NeighborAirState(block.neighborAir);
         neighborAirState.currentBlockTexture = tmp;
 
+        //this the best code in my life...
         if (block != Blocks.air) {
-            upLeft = world.tiles.get(x - 1,y + 1);
-            up = world.tiles.get(x,y + 1);
-            upRight = world.tiles.get(x + 1,y + 1);
-            left = world.tiles.get(x - 1, y);
-            right = world.tiles.get(x + 1, y);
-            downLeft = world.tiles.get(x - 1, y - 1);
-            down = world.tiles.get(x, y - 1);
-            downRight = world.tiles.get(x + 1, y - 1);
+            if (x - 1 < 0) leftWorldEnd = true;
+            if (x + 1 > world.width-1) rightWorldEnd = true;
+            if (y - 1 < 0) downWorldEnd = true;
+            if (y + 1 > world.height-1) upWorldEnd = true;
+
+            if (!leftWorldEnd && !upWorldEnd) upLeft = world.tiles.get(x - 1,y + 1);
+            else upLeft = emptyTile;
+            if (!upWorldEnd) up = world.tiles.get(x,y + 1);
+            else up = emptyTile;
+            if (!rightWorldEnd && !upWorldEnd) upRight = world.tiles.get(x + 1,y + 1);
+            else upRight = emptyTile;
+            if (!leftWorldEnd) left = world.tiles.get(x - 1, y);
+            else left = emptyTile;
+            if (!rightWorldEnd) right = world.tiles.get(x + 1, y);
+            else right = emptyTile;
+            if (!downWorldEnd && !leftWorldEnd) downLeft = world.tiles.get(x - 1, y - 1);
+            else downLeft = emptyTile;
+            if (!downWorldEnd) down = world.tiles.get(x, y - 1);
+            else down = emptyTile;
+            if (!rightWorldEnd && !downWorldEnd) downRight = world.tiles.get(x + 1, y - 1);
+            else downRight = emptyTile;
 
             if (left.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.left;
             if (up.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.up;
@@ -65,34 +83,13 @@ public class Tile {
             if (left.block == Blocks.air && down.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downLeft;
 
             if (
-                    up.block != Blocks.air &&
-                    down.block != Blocks.air &&
-                    right.block != Blocks.air &&
-                    left.block != Blocks.air
+                   up.block != Blocks.air &&
+                   down.block != Blocks.air &&
+                   right.block != Blocks.air &&
+                   left.block != Blocks.air
             ) {
                 neighborAirState.currentBlockTexture = neighborAirState.neighborAir.middle;
             }
         }
-
-//        if (x - 1 < 0 || y + 1 > world.height-1) upLeft = null;
-//        else upLeft = world.tiles.get(x - 1,y + 1);
-//
-//        if (y + 1 > world.height-1) up = null;
-//        else up = world.tiles.get(x,y + 1);
-//
-//        if (x + 1 > world.width-1 || y + 1 > world.height-1) upRight = null;
-//        else upRight = world.tiles.get(x + 1,y + 1);
-//
-//        if (x - 1 < 0) left = null;
-//        else left = world.tiles.get(x - 1, y);
-//
-//        if (x + 1 > world.width-1) right = null;
-//        else right = world.tiles.get(x + 1,y);
-//
-//        downLeft = world.tiles.get(x -1, y - 1);
-
-//        down = world.tiles.get(x, y - 1);
-//        downRight = world.tiles.get(x + 1, y - 1);
-
     }
 }
