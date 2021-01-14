@@ -3,12 +3,15 @@ package mint.runner.maps;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.MainActivity;
 import mint.runner.ui.Image;
 import mint.runner.ui.Separator;
@@ -21,6 +24,9 @@ public class MenuScreen implements Screen {
     public Stage stage;
     public Table table;
 
+    public OrthographicCamera camera;
+    public Viewport viewport;
+
     public MenuScreen(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
@@ -29,6 +35,10 @@ public class MenuScreen implements Screen {
     public void show() {
         stage = new Stage();
         table = new Table();
+
+        camera = new OrthographicCamera();
+        viewport = new ScreenViewport(camera);
+        stage.setViewport(viewport);
 
         Texture buttonUp = new Texture("buttonUp.png");
         Texture buttonDown = new Texture("buttonDown.png");
@@ -68,11 +78,15 @@ public class MenuScreen implements Screen {
         stage.act();
         stage.draw();
 
+        viewport.apply();
+
         Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void resize(int width, int height) {
+        viewport.update(width, height);
+        camera.position.set(width/2,height/2,0);
         table.setSize(width,height);
     }
 
