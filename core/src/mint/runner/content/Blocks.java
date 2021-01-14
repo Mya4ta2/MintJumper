@@ -33,9 +33,5 @@ public class Blocks implements ContentList {
             }
         };
         blocks.add(grass);
-
-        for (int i = 0; i < 100; i++) {
-            blocks.add(dirt);
-        }
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import mint.runner.Cursor;
 import mint.runner.type.World;
 
 public class WorldEditorScreen implements Screen {
@@ -47,6 +48,7 @@ public class WorldEditorScreen implements Screen {
         viewport.apply();
 
         Gdx.input.setInputProcessor(uiRenderer.stage);
+        setCursor();
     }
 
     @Override
@@ -74,5 +76,19 @@ public class WorldEditorScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public void setCursor() {
+        int x = Gdx.input.getX();
+        int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+        int worldX = (int) (worldRenderer.camera.position.x + x);
+        int worldY = (int) (worldRenderer.camera.position.y + y);
+
+        Cursor.x = x;
+        Cursor.y = y;
+        Cursor.worldX = worldX;
+        Cursor.worldY = worldY;
+        Cursor.worldPosition.set(worldX, worldY);
     }
 }
