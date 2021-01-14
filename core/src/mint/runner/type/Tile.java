@@ -63,6 +63,15 @@ public class Tile {
 
             if (right.block == Blocks.air && down.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downRight;
             if (left.block == Blocks.air && down.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downLeft;
+
+            if (
+                    up.block != Blocks.air &&
+                    down.block != Blocks.air &&
+                    right.block != Blocks.air &&
+                    left.block != Blocks.air
+            ) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.middle;
+            }
         }
 
 //        if (x - 1 < 0 || y + 1 > world.height-1) upLeft = null;
