@@ -81,7 +81,7 @@ public class ContentSelectMenu extends Actor {
                 x = 0;
             }
 
-            buttons[i].setPosition(Vars.tileSize * x * separator ,Vars.tileSize * y * separator);
+            buttons[i].setPosition((Vars.tileSize * x * separator) + getX(),(Vars.tileSize * y * separator) + getY());
         }
     }
 
@@ -105,6 +105,13 @@ public class ContentSelectMenu extends Actor {
     @Override
     public void act(float delta) {
         setPositions();
+
+        if (buttons[0].getStage() == null && getStage() != null) {
+            for (int i = 0; i < buttons.length; i++) {
+                getStage().addActor(buttons[i]);
+            }
+        }
+
         super.act(delta);
     }
 }

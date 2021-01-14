@@ -16,6 +16,7 @@ import mint.runner.type.ContentType;
 import mint.runner.ui.Button;
 import mint.runner.ui.ContentSelectMenu;
 import mint.runner.ui.ImageButton;
+import mint.runner.ui.ToolSelectMenu;
 
 public class EditorUIRenderer implements Renderer {
     public OrthographicCamera camera;
@@ -24,6 +25,7 @@ public class EditorUIRenderer implements Renderer {
     public SpriteBatch batch;
 
     public ContentSelectMenu menu;
+    public ToolSelectMenu toolSelectMenu;
 
     @Override
     public void create() {
@@ -33,13 +35,16 @@ public class EditorUIRenderer implements Renderer {
         batch = new SpriteBatch();
 
         menu = new ContentSelectMenu(ContentType.block, new Texture("buttonUp.png"), new Texture("buttonDown.png"));
-        menu.setPosition(0, 0);
+        toolSelectMenu = new ToolSelectMenu(
+                new Texture("buttonUp.png"),
+                new Texture("buttonDown.png"),
+                new Texture("buttonUp.png"),
+                new Texture("buttonDown.png")
+        );
+
+        stage.addActor(toolSelectMenu);
         stage.addActor(menu);
         stage.setViewport(viewport);
-
-        for (int i = 0; i < menu.buttons.length; i++) {
-            stage.addActor(menu.buttons[i]);
-        }
     }
 
     @Override
@@ -55,6 +60,7 @@ public class EditorUIRenderer implements Renderer {
         viewport.apply();
 
         EditorVars.currentContentSelected = menu.currentContent;
+        EditorVars.tool = toolSelectMenu.currentTool;
     }
 
     @Override
@@ -63,5 +69,10 @@ public class EditorUIRenderer implements Renderer {
         viewport.update(width, height);
 
         menu.setSize(Gdx.graphics.getWidth()/5, Gdx.graphics.getHeight());
+        menu.setPosition(width-menu.getWidth(),0);
+        menu.setPositions();
+
+        toolSelectMenu.setPosition(0, 0);
+        toolSelectMenu.setSize(Gdx.graphics.getWidth()/5, Gdx.graphics.getHeight());
     }
 }

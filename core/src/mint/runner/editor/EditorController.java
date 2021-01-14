@@ -51,14 +51,23 @@ public class EditorController {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             int x = (int) (Cursor.worldX / tileSize);
             int y = (int) (Cursor.worldY / tileSize);
-            System.out.println(x + " " + y);
-            if (EditorVars.currentContentSelected != null)
+
+            if (EditorVars.currentContentSelected != null && EditorVars.tool == EditorToolsType.Brush)
                 if (
                         x >= 0 && x <= world.width &&
                         y >= 0 && y <= world.height
                 ) {
                     world.tiles.get(x, y).block = (Block) EditorVars.currentContentSelected;
                 }
+
+            if (EditorVars.tool == EditorToolsType.Erasing) {
+                if (
+                        x >= 0 && x <= world.width &&
+                        y >= 0 && y <= world.height
+                ) {
+                    world.tiles.get(x, y).block = Blocks.air;
+                }
+            }
         }
 
         world.player.sprint = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
