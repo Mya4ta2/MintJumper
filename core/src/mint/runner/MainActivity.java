@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import mint.runner.content.*;
 import mint.runner.editor.WorldEditorScreen;
+import mint.runner.maps.MenuScreen;
 import mint.runner.screen.GameScreen;
 import mint.runner.type.NeighborAir;
 
@@ -31,7 +32,7 @@ public class MainActivity extends Game {
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);
 
-		setScreen(new WorldEditorScreen()); //temp
+		setScreen(new MenuScreen(this)); //temp
 	}
 
 	public static NeighborAir getDirt() {
