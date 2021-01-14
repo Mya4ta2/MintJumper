@@ -70,7 +70,11 @@ public class WorldRenderer implements Renderer {
         //drawDebugRectangles();
         shapeRenderer.end();
 
-        camera.position.set(world.player.position.x * tileSize, world.player.position.y * tileSize,0);
+        camera.position.set(
+                (world.player.position.x * tileSize) + (world.player.width * tileSize) / 2,
+                (world.player.position.y * tileSize) + (world.player.height * tileSize) / 2,
+                0
+        );
         camera.update();
         viewport.apply();
     }
