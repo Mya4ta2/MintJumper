@@ -89,7 +89,7 @@ public class MainActivity extends Game {
 	}
 
 	public void loadTextures() {
-		Bullets.bullet.texture = new Texture("dirt.png");
+		Bullets.bullet.texture = new Texture("bullet.png");
 		Weapons.test.texture = new Texture("weapon.png");
 	}
 }

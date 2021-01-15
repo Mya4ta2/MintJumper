@@ -21,8 +21,9 @@ public class World {
         tiles = new Tiles(width, height);
         entitys = new Entitys();
         player = new Player(new Vector2(width/2 + 5,height/2 + 5));
+        backgroundColor = Color.valueOf("A4DDDB");
 
-        createTestWorld();
+        //createTestWorld();
         setTiles();
     }
 
@@ -39,8 +40,6 @@ public class World {
             tiles.get(i,2).block = Blocks.grass;
             tiles.get(i,1).block = Blocks.grass;
         }
-
-        backgroundColor = Color.valueOf("A4DDDB");
     }
     
     public void setTiles() {

@@ -21,6 +21,7 @@ public class Bullet implements Entity {
 
     @Override
     public void update(float delta) {
-        position.add(velocity.scl(delta));
+        position.add(velocity);
+        velocity.crs(delta, delta);
     }
 }

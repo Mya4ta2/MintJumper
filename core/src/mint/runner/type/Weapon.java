@@ -20,7 +20,7 @@ public class Weapon implements Entity {
     }
 
     public void shoot() {
-        new Bullet(new Vector2(player.position), new Vector2(3000,0), Vars.world, type.bulletType, player);
+        new Bullet(new Vector2(player.position), new Vector2(1,0), Vars.world, type.bulletType, player);
     }
 
     @Override
