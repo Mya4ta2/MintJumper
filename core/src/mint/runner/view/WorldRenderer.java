@@ -55,6 +55,14 @@ public class WorldRenderer implements Renderer {
         shapeRenderer = new ShapeRenderer();
     }
 
+    public void drawCursorHitbox() {
+        shapeRenderer.rect(
+                (int) (Cursor.worldX / tileSize) * tileSize,
+                (int) (Cursor.worldY / tileSize) * tileSize,
+                tileSize,
+                tileSize);
+    }
+
     @Override
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
@@ -67,7 +75,9 @@ public class WorldRenderer implements Renderer {
 
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        drawCursorHitbox();
         //drawDebugRectangles();
+
         shapeRenderer.end();
 
         camera.position.set(

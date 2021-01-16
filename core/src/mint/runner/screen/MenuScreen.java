@@ -1,4 +1,4 @@
-package mint.runner.maps;
+package mint.runner.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

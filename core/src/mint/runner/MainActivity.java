@@ -1,21 +1,14 @@
 package mint.runner;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.*;
-import mint.runner.editor.WorldEditorScreen;
-import mint.runner.maps.MenuScreen;
+import mint.runner.screen.MenuScreen;
 import mint.runner.screen.GameScreen;
 import mint.runner.type.NeighborAir;
-
-import java.util.Arrays;
 
 public class MainActivity extends Game {
 	public Screen gameScreen;
