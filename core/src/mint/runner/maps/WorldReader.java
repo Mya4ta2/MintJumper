@@ -87,6 +87,7 @@ public class WorldReader {
                 }
             }
 
+            world.setTiles();
             return world;
         } else {
             throw new FileNotFoundException("MapReader can't find the map file");
