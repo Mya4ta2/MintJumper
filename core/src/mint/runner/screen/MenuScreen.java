@@ -2,6 +2,7 @@ package mint.runner.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,19 +14,29 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.MainActivity;
+import mint.runner.Vars;
+import mint.runner.maps.WorldReader;
+import mint.runner.type.World;
 import mint.runner.ui.Image;
 import mint.runner.ui.Separator;
 import mint.runner.ui.TextButton;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static mint.runner.Vars.tileSize;
+import static mint.runner.Vars.worldDir;
 
 public class MenuScreen implements Screen {
     public MainActivity mainActivity;
-    public Stage stage;
-    public Table table;
 
     public OrthographicCamera camera;
     public Viewport viewport;
+    public Stage currentStage;
+    public Stage stage;
+    public Stage customGameStage;
+    public Table customGameTable;
+    public Table table;
 
     public MenuScreen(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -35,10 +46,14 @@ public class MenuScreen implements Screen {
     public void show() {
         stage = new Stage();
         table = new Table();
+        customGameStage = new Stage();
+        customGameTable = new Table();
+        currentStage = stage; //oh no
 
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
         stage.setViewport(viewport);
+        customGameStage.setViewport(viewport);
 
         Texture buttonUp = new Texture("buttonUp.png");
         Texture buttonDown = new Texture("buttonDown.png");
@@ -47,12 +62,12 @@ public class MenuScreen implements Screen {
         Image image = new Image(logo);
 
         TextButton startButton = new TextButton(buttonUp, buttonDown, new BitmapFont());
-        startButton.setText("start");
+        startButton.setText("custom game");
         startButton.setSize(170,70);
         startButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                mainActivity.setScreen(mainActivity.gameScreen);
+                currentStage = customGameStage;
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
@@ -75,6 +90,45 @@ public class MenuScreen implements Screen {
         table.center().add(exitButton).row();
 
         stage.addActor(table);
+
+        TextButton back = new TextButton(buttonUp, buttonDown, new BitmapFont());
+        back.setText("back");
+        back.setSize(170,70);
+        back.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                currentStage = stage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        TextButton newMap = new TextButton(buttonUp, buttonDown, new BitmapFont());
+        newMap.setText("new map");
+        newMap.setSize(170,70);
+
+        ArrayList<World> worlds = new ArrayList<>();
+        FileHandle worldDirHandle = Gdx.files.internal("world");
+
+        for (int i = 0; i < Gdx.files.internal(worldDir).list().length; i++) {
+            try {
+                worlds.add(WorldReader.readFile(Gdx.files.internal(worldDir).list()[i]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        customGameTable.center().add(back);
+        customGameTable.center().add(new Separator(0,25));
+        customGameTable.center().add(newMap).row();
+
+        for (int i = 0; i < worlds.size(); i++) {
+            TextButton worldTempButton = new TextButton(buttonUp,buttonDown,new BitmapFont());
+            worldTempButton.setText(worlds.get(i).name);
+            worldTempButton.setSize(170,70);
+            customGameTable.center().add(worldTempButton).row();
+        }
+
+        customGameStage.addActor(customGameTable);
     }
 
     @Override
@@ -82,12 +136,12 @@ public class MenuScreen implements Screen {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(1,1,1,1);
 
-        stage.act();
-        stage.draw();
+        currentStage.act();
+        currentStage.draw();
 
         viewport.apply();
 
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(currentStage);
     }
 
     @Override
@@ -95,6 +149,7 @@ public class MenuScreen implements Screen {
         viewport.update(width, height);
         camera.position.set(width/2,height/2,0);
         table.setSize(width,height);
+        customGameTable.setSize(width,height);
     }
 
     @Override

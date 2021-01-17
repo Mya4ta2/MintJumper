@@ -7,4 +7,6 @@ public class Vars {
     public static int tileSize = 16;
     public static World world;
     public static Camera camera;
+
+    public static String worldDir = "world";
 }
