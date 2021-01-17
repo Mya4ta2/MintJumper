@@ -60,6 +60,13 @@ public class MenuScreen implements Screen {
         TextButton exitButton = new TextButton(buttonUp, buttonDown, new BitmapFont());
         exitButton.setText("exit");
         exitButton.setSize(170,70);
+        exitButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.exit();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
         table.center().add(image).row();
         table.center().add(new Separator(25)).row();
