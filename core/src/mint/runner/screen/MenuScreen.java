@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.MainActivity;
 import mint.runner.Vars;
+import mint.runner.editor.WorldEditorScreen;
 import mint.runner.maps.WorldReader;
 import mint.runner.type.World;
 import mint.runner.ui.Image;
@@ -105,6 +106,13 @@ public class MenuScreen implements Screen {
         TextButton newMap = new TextButton(buttonUp, buttonDown, new BitmapFont());
         newMap.setText("new map");
         newMap.setSize(170,70);
+        newMap.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                mainActivity.setScreen(new WorldEditorScreen());
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
 
         ArrayList<World> worlds = new ArrayList<>();
         FileHandle worldDirHandle = Gdx.files.internal("world");
