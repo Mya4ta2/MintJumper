@@ -37,7 +37,7 @@ public class WorldEditorScreen implements Screen {
         uiRenderer.render(delta);
         controller.update(delta);
 
-        Gdx.input.setInputProcessor(uiRenderer.stage);
+        Gdx.input.setInputProcessor(uiRenderer.currentStage);
         setCursor();
     }
 
