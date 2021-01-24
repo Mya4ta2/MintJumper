@@ -80,11 +80,10 @@ public class WorldRenderer implements Renderer {
 
         shapeRenderer.end();
 
-        camera.position.set(
-                (world.player.position.x * tileSize) + (world.player.width * tileSize) / 2,
-                (world.player.position.y * tileSize) + (world.player.height * tileSize) / 2,
-                0
-        );
+        float cameraX = (((world.player.position.x * tileSize) + (world.player.width * tileSize) / 2) - camera.position.x) / 15;
+        float cameraY = (((world.player.position.y * tileSize) + (world.player.height * tileSize) / 2) - camera.position.y) / 15;
+
+        camera.position.add(cameraX, cameraY, 0);
         camera.update();
         viewport.apply();
     }

@@ -38,8 +38,6 @@ public class Weapon implements Entity {
                 Gdx.graphics.getHeight()/2
         ) * MathUtils.radiansToDegrees;
 
-        System.out.println(angle);
-
         if (sprite == null && type.texture != null) {
             sprite = new Sprite(type.texture);
         }
