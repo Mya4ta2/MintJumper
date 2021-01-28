@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -93,6 +94,8 @@ public class EditorUIRenderer implements Renderer {
             if (currentStage == resumeStage) currentStage = stage;
             else currentStage = resumeStage;
         }
+
+        propertiesStage.setKeyboardFocus(((Table)((Group) propertiesStage.getActors().get(0)).getChild(0)).getChild(1));
 
         EditorVars.currentContentSelected = menu.currentContent;
         EditorVars.tool = toolSelectMenu.currentTool;
