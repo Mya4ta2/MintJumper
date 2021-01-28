@@ -114,7 +114,7 @@ public class MenuScreen implements Screen {
             }
         });
 
-        ArrayList<World> worlds = new ArrayList<>();
+        final ArrayList<World> worlds = new ArrayList<>();
         FileHandle worldDirHandle = Gdx.files.internal("world");
 
         for (int i = 0; i < Gdx.files.internal(worldDir).list().length; i++) {
@@ -134,6 +134,16 @@ public class MenuScreen implements Screen {
             worldTempButton.setText(worlds.get(i).name);
             worldTempButton.setSize(170,70);
             customGameTable.center().add(worldTempButton).row();
+            final int finalI = i;
+            worldTempButton.addListener(new InputListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    GameScreen gameScreen = new GameScreen();
+                    gameScreen.world = worlds.get(finalI);
+                    mainActivity.setScreen(gameScreen);
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+            });
         }
 
         customGameStage.addActor(customGameTable);
