@@ -60,7 +60,7 @@ public class EditorRenderer implements Renderer {
         drawPlayer(batch);
         drawBullets(batch);
 
-        if (EditorVars.currentContentSelected != null) {
+        if (EditorVars.currentContentSelected != null && EditorVars.tool == EditorToolsType.Brush) {
             batch.draw(((Block) EditorVars.currentContentSelected).neighborAir.up, Cursor.worldX, Cursor.worldY);
         }
 

@@ -45,8 +45,8 @@ public class EditorUIRenderer implements Renderer {
         toolSelectMenu = new ToolSelectMenu(
                 new Texture("buttonUp.png"),
                 new Texture("buttonDown.png"),
-                new Texture("buttonUp.png"),
-                new Texture("buttonDown.png")
+                new Texture("brush.png"),
+                new Texture("erase.png")
         );
 
         TextButton properties = new TextButton(new Texture("buttonUp.png"), new Texture("buttonDown.png"),new BitmapFont());
