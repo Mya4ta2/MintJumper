@@ -6,15 +6,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import mint.runner.Cursor;
-import mint.runner.Vars;
-import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
-import mint.runner.type.Block;
 import mint.runner.type.ContentType;
 import mint.runner.ui.*;
 
@@ -29,7 +26,8 @@ public class EditorUIRenderer implements Renderer {
 
     public Stage currentStage;
     public Stage resumeStage;
-    public Table resumeTable;
+
+    EditorResumeFragment resumeFragment;
 
     @Override
     public void create() {
@@ -38,7 +36,6 @@ public class EditorUIRenderer implements Renderer {
         stage = new Stage();
         resumeStage = new Stage();
         batch = new SpriteBatch();
-        resumeTable = new Table();
         currentStage = stage;
 
         menu = new ContentSelectMenu(ContentType.block, new Texture("buttonUp.png"), new Texture("buttonDown.png"));
@@ -49,16 +46,16 @@ public class EditorUIRenderer implements Renderer {
                 new Texture("erase.png")
         );
 
-        TextButton properties = new TextButton(new Texture("buttonUp.png"), new Texture("buttonDown.png"),new BitmapFont());
-        properties.setText("properties");
-        properties.setSize(170,70);
-
-        resumeTable.center().add(properties);
-        resumeStage.addActor(resumeTable);
         stage.addActor(toolSelectMenu);
         stage.addActor(menu);
         stage.setViewport(viewport);
         resumeStage.setViewport(viewport);
+
+        //please move to UI :<
+        resumeFragment = new EditorResumeFragment();
+        Group resumeGroup = new Group();
+        resumeFragment.build(resumeGroup);
+        resumeStage.addActor(resumeGroup);
     }
 
     @Override
@@ -91,7 +88,7 @@ public class EditorUIRenderer implements Renderer {
         menu.setPosition(width-menu.getWidth(),0);
         menu.setPositions();
 
-        resumeTable.setSize(width,height);
+        resumeFragment.resize(width, height);
 
         toolSelectMenu.setPosition(0, 0);
         toolSelectMenu.setSize(Gdx.graphics.getWidth()/5, Gdx.graphics.getHeight());
