@@ -17,8 +17,7 @@ public class WorldPropertiesFragment extends Fragment {
 
         BitmapFont bitmapFont = new BitmapFont();
         bitmapFont.setColor(Color.BLACK);
-        TextField textField = new TextField(bitmapFont);
-        textField.addSymbol('o');
+        TextField textField = new NumericField(bitmapFont);
 
         table.center().add(exit);
         table.center().add(textField);
