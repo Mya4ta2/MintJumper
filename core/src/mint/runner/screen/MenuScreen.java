@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,6 +20,7 @@ import mint.runner.editor.WorldEditorScreen;
 import mint.runner.maps.WorldReader;
 import mint.runner.type.World;
 import mint.runner.ui.Image;
+import mint.runner.ui.MenuFragment;
 import mint.runner.ui.Separator;
 import mint.runner.ui.TextButton;
 
@@ -39,6 +41,8 @@ public class MenuScreen implements Screen {
     public Table customGameTable;
     public Table table;
 
+    public MenuFragment menuFragment;
+
     public MenuScreen(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
@@ -58,38 +62,12 @@ public class MenuScreen implements Screen {
 
         Texture buttonUp = new Texture("buttonUp.png");
         Texture buttonDown = new Texture("buttonDown.png");
-        Texture logo = new Texture("logo.png");
 
-        Image image = new Image(logo);
+        menuFragment = new MenuFragment();
+        Group menuGroup = new Group();
+        menuFragment.build(menuGroup);
 
-        TextButton startButton = new TextButton(buttonUp, buttonDown, new BitmapFont());
-        startButton.setText("custom game");
-        startButton.setSize(170,70);
-        startButton.addListener(new InputListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                currentStage = customGameStage;
-                return super.touchDown(event, x, y, pointer, button);
-            }
-        });
-
-        TextButton exitButton = new TextButton(buttonUp, buttonDown, new BitmapFont());
-        exitButton.setText("exit");
-        exitButton.setSize(170,70);
-        exitButton.addListener(new InputListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.exit();
-                return super.touchDown(event, x, y, pointer, button);
-            }
-        });
-
-        table.center().add(image).row();
-        table.center().add(new Separator(25)).row();
-        table.center().add(startButton).row();
-        table.center().add(new Separator(25)).row();
-        table.center().add(exitButton).row();
-
+        table.add(menuGroup);
         stage.addActor(table);
 
         TextButton back = new TextButton(buttonUp, buttonDown, new BitmapFont());
@@ -189,5 +167,9 @@ public class MenuScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public void setCustomGameStage() {
+        currentStage = customGameStage;
     }
 }

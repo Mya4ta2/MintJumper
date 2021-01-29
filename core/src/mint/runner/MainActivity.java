@@ -26,6 +26,7 @@ public class MainActivity extends Game {
 		setScreen(gameScreen);
 
 		setScreen(new MenuScreen(this)); //temp
+		Vars.menuScreen = (MenuScreen) getScreen();
 	}
 
 	public static NeighborAir getDirt() {
