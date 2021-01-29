@@ -21,7 +21,7 @@ public class World {
         tiles = new Tiles(width, height);
         entitys = new Entitys();
         player = new Player(new Vector2(width/2 + 5,height/2 + 5));
-        backgroundColor = Color.valueOf("A4DDDB");
+        backgroundColor = Color.valueOf("fafafa");
 
         //createTestWorld();
         setTiles();
