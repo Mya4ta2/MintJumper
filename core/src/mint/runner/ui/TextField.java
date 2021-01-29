@@ -14,7 +14,7 @@ public class TextField extends Actor {
     public TextField(BitmapFont font) {
         this.font = font;
 
-        addListener(new InputListener(){
+        addListener(new InputListener() {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if (keycode == Input.Keys.BACKSPACE) removeLast();

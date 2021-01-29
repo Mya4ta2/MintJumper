@@ -25,6 +25,8 @@ public class WorldEditorScreen implements Screen {
         uiRenderer.create();
         worldRenderer.create();
         controller = new EditorController(world);
+
+        EditorVars.world = world;
     }
 
     @Override

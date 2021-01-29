@@ -16,13 +16,19 @@ public class EditorResumeFragment extends Fragment {
         properties.setText("properties");
         properties.setSize(170,70);
 
+        TextButton save = new TextButton(new Texture("buttonUp.png"), new Texture("buttonDown.png"), new BitmapFont());
+        save.setText("save");
+        save.setSize(170,70);
+
         TextButton exit = new TextButton(new Texture("buttonUp.png"), new Texture("buttonDown.png"), new BitmapFont());
         exit.setText("exit");
         exit.setSize(170,70);
 
         table.center().add(properties).row();
-        table.add(new Separator(25)).row();
-        table.center().add(exit);
+        table.center().add(new Separator(25)).row();
+        table.center().add(save).row();
+        table.center().add(new Separator(25)).row();
+        table.center().add(exit).row();
 
         parent.addActor(table);
     }

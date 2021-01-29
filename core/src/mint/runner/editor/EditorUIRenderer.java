@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.ctype.Renderer;
+import mint.runner.maps.WorldWriter;
 import mint.runner.type.ContentType;
 import mint.runner.ui.*;
 
@@ -64,10 +65,18 @@ public class EditorUIRenderer implements Renderer {
         resumeFragment.build(resumeGroup);
         resumeStage.addActor(resumeGroup);
 
-        resumeGroup.getChild(0).addListener(new InputListener(){
+        (((Table)((Group) resumeStage.getActors().get(0)).getChild(0)).getChild(0)).addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 currentStage = propertiesStage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        }); //:<
+
+        (((Table)((Group) resumeStage.getActors().get(0)).getChild(0)).getChild(2)).addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                WorldWriter.writeNewMap(EditorVars.world.name, EditorVars.world);
                 return super.touchDown(event, x, y, pointer, button);
             }
         }); //:<
