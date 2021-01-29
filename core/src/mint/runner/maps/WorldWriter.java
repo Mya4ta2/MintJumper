@@ -53,12 +53,13 @@ public class WorldWriter {
 
     public static World cutWorldToSize(World world, int width, int height) {
         World newWorld = new World(width, height, world.name);
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                newWorld.tiles.set(x, y, world.tiles.get(x,y));
+        if (world.width < width && world.height < height) {
+            for (int x = 0; x < world.width; x++) {
+                for (int y = 0; y < world.height; y++) {
+                    newWorld.tiles.set(x,y,world.tiles.get(x,y));
+                }
             }
         }
-
         return newWorld;
     }
 }

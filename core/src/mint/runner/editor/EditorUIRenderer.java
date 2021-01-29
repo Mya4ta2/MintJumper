@@ -85,6 +85,11 @@ public class EditorUIRenderer implements Renderer {
         Group propertiesGroup = new Group();
         propertiesFragment.build(propertiesGroup);
         propertiesStage.addActor(propertiesGroup);
+
+        TextField textField = (TextField) ((Table)((Group) propertiesStage.getActors().get(0)).getChild(0)).getChild(1);
+        textField.onTextChangedEvents.add(() -> {
+            EditorVars.world = WorldWriter.cutWorldToSize(EditorVars.world, Integer.parseInt(textField.getText().toString()), EditorVars.world.height);
+        });
     }
 
     @Override

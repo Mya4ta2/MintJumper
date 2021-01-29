@@ -7,9 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
+import java.util.ArrayList;
+
 public class TextField extends Actor {
     private final StringBuilder text = new StringBuilder();
     public BitmapFont font;
+    public ArrayList<Runnable> onTextChangedEvents = new ArrayList<>();
 
     public TextField(BitmapFont font) {
         this.font = font;
@@ -39,9 +42,21 @@ public class TextField extends Actor {
         if (text.length() > 0) {
             text.delete(text.length()-2, text.length());
         }
+        runOnTextChangedEvents();
     }
 
     public void addSymbol(char symbol) {
         text.append(symbol);
+        runOnTextChangedEvents();
+    }
+
+    public StringBuilder getText() {
+        return text;
+    }
+
+    public void runOnTextChangedEvents() {
+        for (Runnable onTextChangedEvent : onTextChangedEvents) {
+            onTextChangedEvent.run();
+        }
     }
 }
