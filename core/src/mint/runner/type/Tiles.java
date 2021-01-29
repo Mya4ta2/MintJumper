@@ -16,7 +16,7 @@ public class Tiles {
         return array[y * width + x];
     }
 
-    public void set(int y, int x, Tile tile) {
+    public void set(int x, int y, Tile tile) {
         array[y * width + x] = tile;
     }
 

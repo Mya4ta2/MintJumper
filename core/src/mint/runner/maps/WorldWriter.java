@@ -50,4 +50,15 @@ public class WorldWriter {
         file.writeString("",false);
         return file;
     }
+
+    public static World cutWorldToSize(World world, int width, int height) {
+        World newWorld = new World(width, height, world.name);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                newWorld.tiles.set(x, y, world.tiles.get(x,y));
+            }
+        }
+
+        return newWorld;
+    }
 }

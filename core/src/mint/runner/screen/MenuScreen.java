@@ -139,6 +139,7 @@ public class MenuScreen implements Screen {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     GameScreen gameScreen = new GameScreen();
+                    System.out.println(worlds.get(finalI).name);
                     gameScreen.world = worlds.get(finalI);
                     mainActivity.setScreen(gameScreen);
                     return super.touchDown(event, x, y, pointer, button);

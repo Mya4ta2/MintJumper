@@ -9,6 +9,7 @@ import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.controller.WorldController;
 import mint.runner.maps.WorldReader;
+import mint.runner.maps.WorldWriter;
 import mint.runner.type.World;
 import mint.runner.view.WorldRenderer;
 
@@ -19,11 +20,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        try {
-            world = WorldReader.readFile(Gdx.files.internal("Rock.rsav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         worldRenderer = new WorldRenderer(world);
         worldRenderer.create();
         worldController = new WorldController(world);
