@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import mint.runner.Vars;
 import mint.runner.ctype.Renderer;
 import mint.runner.maps.WorldWriter;
 import mint.runner.type.ContentType;
@@ -31,9 +32,6 @@ public class EditorUIRenderer implements Renderer {
     public Stage currentStage;
     public Stage resumeStage;
     public Stage propertiesStage;
-
-    EditorResumeFragment resumeFragment;
-    WorldPropertiesFragment propertiesFragment;
 
     @Override
     public void create() {
@@ -59,10 +57,8 @@ public class EditorUIRenderer implements Renderer {
         resumeStage.setViewport(viewport);
         propertiesStage.setViewport(viewport);
 
-        //please move to UI :<
-        resumeFragment = new EditorResumeFragment();
         Group resumeGroup = new Group();
-        resumeFragment.build(resumeGroup);
+        Vars.ui.resumeFragment.build(resumeGroup);
         resumeStage.addActor(resumeGroup);
 
         (((Table)((Group) resumeStage.getActors().get(0)).getChild(0)).getChild(0)).addListener(new InputListener(){
@@ -81,9 +77,8 @@ public class EditorUIRenderer implements Renderer {
             }
         }); //:<
 
-        propertiesFragment = new WorldPropertiesFragment();
         Group propertiesGroup = new Group();
-        propertiesFragment.build(propertiesGroup);
+        Vars.ui.propertiesFragment.build(propertiesGroup);
         propertiesStage.addActor(propertiesGroup);
 
         TextField textField = (TextField) ((Table)((Group) propertiesStage.getActors().get(0)).getChild(0)).getChild(1);
@@ -125,7 +120,7 @@ public class EditorUIRenderer implements Renderer {
         menu.setPositions();
 
         //i experiments
-        resumeFragment.resize(width, height);
+        Vars.ui.resumeFragment.resize(width, height);
         ((Group) propertiesStage.getActors().get(0)).getChild(0).setSize(width,height);
 
         toolSelectMenu.setPosition(0, 0);

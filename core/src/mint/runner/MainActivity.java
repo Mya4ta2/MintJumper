@@ -9,6 +9,7 @@ import mint.runner.content.*;
 import mint.runner.screen.MenuScreen;
 import mint.runner.screen.GameScreen;
 import mint.runner.type.NeighborAir;
+import mint.runner.ui.UI;
 
 public class MainActivity extends Game {
 	public Screen gameScreen;
@@ -21,6 +22,9 @@ public class MainActivity extends Game {
 		new Bullets().load();
 		new Weapons().load();
 		loadTextures();
+
+		Vars.ui = new UI();
+		Vars.ui.load();
 
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);

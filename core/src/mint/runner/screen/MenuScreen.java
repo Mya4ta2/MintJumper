@@ -41,8 +41,6 @@ public class MenuScreen implements Screen {
     public Table customGameTable;
     public Table table;
 
-    public MenuFragment menuFragment;
-
     public MenuScreen(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
@@ -63,9 +61,8 @@ public class MenuScreen implements Screen {
         Texture buttonUp = new Texture("buttonUp.png");
         Texture buttonDown = new Texture("buttonDown.png");
 
-        menuFragment = new MenuFragment();
         Group menuGroup = new Group();
-        menuFragment.build(menuGroup);
+        Vars.ui.menuFragment.build(menuGroup);
 
         table.add(menuGroup);
         stage.addActor(table);
