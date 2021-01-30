@@ -119,10 +119,6 @@ public class EditorUIRenderer implements Renderer {
         menu.setPosition(width-menu.getWidth(),0);
         menu.setPositions();
 
-        //i experiments
-        Vars.ui.resumeFragment.resize(width, height);
-        ((Group) propertiesStage.getActors().get(0)).getChild(0).setSize(width,height);
-
         toolSelectMenu.setPosition(0, 0);
         toolSelectMenu.setSize(Gdx.graphics.getWidth()/5, Gdx.graphics.getHeight());
     }

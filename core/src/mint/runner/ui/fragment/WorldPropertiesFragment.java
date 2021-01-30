@@ -1,10 +1,12 @@
 package mint.runner.ui.fragment;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import mint.runner.type.Events;
 import mint.runner.ui.NumericField;
 import mint.runner.ui.TextButton;
 import mint.runner.ui.TextField;
@@ -24,6 +26,11 @@ public class WorldPropertiesFragment extends Fragment {
 
         table.center().add(exit);
         table.center().add(textField);
+        table.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+
+        Events.resize.add(() -> {
+            table.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        });
 
         parent.addActor(table);
     }

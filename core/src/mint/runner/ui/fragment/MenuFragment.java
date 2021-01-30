@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import mint.runner.Vars;
+import mint.runner.type.Events;
 import mint.runner.ui.Image;
 import mint.runner.ui.Separator;
 import mint.runner.ui.TextButton;
