@@ -101,8 +101,6 @@ public class MenuScreen implements Screen {
         }
 
         customGameTable.center().add(back);
-        customGameTable.center().add(new Separator(0,25));
-        customGameTable.center().add(newMap).row();
 
         for (int i = 0; i < worlds.size(); i++) {
             TextButton worldTempButton = new TextButton(buttonUp,buttonDown,new BitmapFont());
@@ -168,5 +166,9 @@ public class MenuScreen implements Screen {
 
     public void setCustomGameStage() {
         currentStage = customGameStage;
+    }
+
+    public void openEditor() {
+        mainActivity.setScreen(new WorldEditorScreen());
     }
 }

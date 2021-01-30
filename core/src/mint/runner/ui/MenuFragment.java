@@ -33,6 +33,17 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        TextButton editor = new TextButton(buttonUp, buttonDown, new BitmapFont());
+        editor.setText("editor");
+        editor.setSize(170,70);
+        editor.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Vars.menuScreen.openEditor();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
         TextButton exitButton = new TextButton(buttonUp, buttonDown, new BitmapFont());
         exitButton.setText("exit");
         exitButton.setSize(170,70);
@@ -47,6 +58,8 @@ public class MenuFragment extends Fragment {
         table.center().add(image).row();
         table.center().add(new Separator(25)).row();
         table.center().add(startButton).row();
+        table.center().add(new Separator(25)).row();
+        table.center().add(editor).row();
         table.center().add(new Separator(25)).row();
         table.center().add(exitButton).row();
 
