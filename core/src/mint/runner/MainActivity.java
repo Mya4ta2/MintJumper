@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.*;
 import mint.runner.screen.MenuScreen;
 import mint.runner.screen.GameScreen;
+import mint.runner.type.Events;
 import mint.runner.type.NeighborAir;
 import mint.runner.ui.UI;
 
@@ -21,6 +22,7 @@ public class MainActivity extends Game {
 		new Items().load();
 		new Bullets().load();
 		new Weapons().load();
+		new Events().load();
 		loadTextures();
 
 		Vars.ui = new UI();
@@ -89,5 +91,41 @@ public class MainActivity extends Game {
 	public void loadTextures() {
 		Bullets.bullet.texture = new Texture("bullet.png");
 		Weapons.test.texture = new Texture("weapon.png");
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+	}
+
+	@Override
+	public void pause() {
+		super.pause();
+	}
+
+	@Override
+	public void resume() {
+		super.resume();
+	}
+
+	@Override
+	public void render() {
+		super.render();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		Events.resize.run();
+		super.resize(width, height);
+	}
+
+	@Override
+	public void setScreen(Screen screen) {
+		super.setScreen(screen);
+	}
+
+	@Override
+	public Screen getScreen() {
+		return super.getScreen();
 	}
 }
