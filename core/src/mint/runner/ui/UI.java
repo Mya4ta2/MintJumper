@@ -1,5 +1,9 @@
 package mint.runner.ui;
 
+import mint.runner.ui.fragment.EditorResumeFragment;
+import mint.runner.ui.fragment.MenuFragment;
+import mint.runner.ui.fragment.WorldPropertiesFragment;
+
 public class UI {
     public EditorResumeFragment resumeFragment;
     public WorldPropertiesFragment propertiesFragment;

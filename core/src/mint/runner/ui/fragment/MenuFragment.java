@@ -1,4 +1,4 @@
-package mint.runner.ui;
+package mint.runner.ui.fragment;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,6 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import mint.runner.Vars;
+import mint.runner.ui.Image;
+import mint.runner.ui.Separator;
+import mint.runner.ui.TextButton;
 
 public class MenuFragment extends Fragment {
     public Table table;

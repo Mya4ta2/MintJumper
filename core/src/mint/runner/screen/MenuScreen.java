@@ -19,15 +19,10 @@ import mint.runner.Vars;
 import mint.runner.editor.WorldEditorScreen;
 import mint.runner.maps.WorldReader;
 import mint.runner.type.World;
-import mint.runner.ui.Image;
-import mint.runner.ui.MenuFragment;
-import mint.runner.ui.Separator;
 import mint.runner.ui.TextButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import static mint.runner.Vars.tileSize;
 import static mint.runner.Vars.worldDir;
 
 public class MenuScreen implements Screen {

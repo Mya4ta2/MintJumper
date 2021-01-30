@@ -1,9 +1,11 @@
-package mint.runner.ui;
+package mint.runner.ui.fragment;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import mint.runner.ui.Separator;
+import mint.runner.ui.TextButton;
 
 public class EditorResumeFragment extends Fragment {
     public Table table;

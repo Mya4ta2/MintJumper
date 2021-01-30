@@ -1,4 +1,4 @@
-package mint.runner.ui;
+package mint.runner.ui.fragment;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 
