@@ -7,6 +7,10 @@ import mint.runner.MainActivity;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new MainActivity(), config);
+		new LwjglApplication(new MainActivity(), config) {
+			{
+				config.title = "Mint Jumper";
+			}
+		};
 	}
 }
