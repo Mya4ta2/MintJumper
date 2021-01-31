@@ -90,6 +90,64 @@ public class Tile {
             ) {
                 neighborAirState.currentBlockTexture = neighborAirState.neighborAir.middle;
             }
+
+            if (    neighborAirState.neighborAir.upAndLeft != null &&
+                    neighborAirState.neighborAir.upAndRight != null &&
+                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.left) &&
+                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndLeft;
+            }
+
+            if (    neighborAirState.neighborAir.upAndLeft != null &&
+                    neighborAirState.neighborAir.upAndRight != null &&
+                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.right) &&
+                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndRight;
+            }
+
+            if (    neighborAirState.neighborAir.downAndLeft != null &&
+                    neighborAirState.neighborAir.downAndRight != null &&
+                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.left) &&
+                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndLeft;
+            }
+
+            if (    neighborAirState.neighborAir.downAndLeft != null &&
+                    neighborAirState.neighborAir.downAndRight != null &&
+                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.right) &&
+                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndRight;
+            }
+
+            //
+
+            if (    neighborAirState.neighborAir.upAndLeft != null &&
+                    neighborAirState.neighborAir.upAndRight != null &&
+                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.upLeft) &&
+                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndLeft;
+            }
+
+            if (    neighborAirState.neighborAir.upAndLeft != null &&
+                    neighborAirState.neighborAir.upAndRight != null &&
+                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.upRight) &&
+                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndRight;
+            }
+
+            if (    neighborAirState.neighborAir.downAndLeft != null &&
+                    neighborAirState.neighborAir.downAndRight != null &&
+                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.downLeft) &&
+                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndLeft;
+            }
+
+            if (    neighborAirState.neighborAir.downAndLeft != null &&
+                    neighborAirState.neighborAir.downAndRight != null &&
+                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.downRight) &&
+                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
+                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndRight;
+            }
         }
     }
 }

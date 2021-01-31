@@ -18,6 +18,7 @@ public class WorldController {
 
     public void update(float delta) {
         world.entitys.updateAll(delta);
+        world.setTiles();
 
         processInput();
         checkPlayerGrounded();

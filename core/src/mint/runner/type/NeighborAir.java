@@ -6,5 +6,8 @@ public class NeighborAir {
     public TextureRegion
     upLeft, up, upRight,
     left, middle, right,
-    downLeft, down, downRight;
+    downLeft, down, downRight,
+    //rare use =(
+    upAndLeft, upAndRight,
+    downAndLeft, downAndRight;
 }

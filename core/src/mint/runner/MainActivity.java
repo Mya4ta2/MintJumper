@@ -67,6 +67,10 @@ public class MainActivity extends Game {
 				downLeft = tmp[2][0];
 				down = tmp[2][1];
 				downRight = tmp[2][2];
+				upAndLeft = tmp[0][3];
+				upAndRight = tmp[0][4];
+				downAndLeft = tmp[1][3];
+				downAndRight = tmp[1][4];
 			}
 		};
 	}
