@@ -26,6 +26,7 @@ public class GameScreen implements Screen {
 
         Cursor.worldPosition = new Vector2();
         Vars.camera = worldRenderer.camera;
+        Gdx.input.setInputProcessor(null);
     }
 
     @Override
