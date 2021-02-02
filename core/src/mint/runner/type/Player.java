@@ -8,7 +8,7 @@ import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
 import mint.runner.content.Weapons;
 
-public class Player implements Entity{
+public class Player implements Entity {
     public enum State {
         WalkLeft, WalkRight, LeftFail, RightFail
     }

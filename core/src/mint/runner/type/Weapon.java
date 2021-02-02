@@ -21,22 +21,27 @@ public class Weapon implements Entity {
     }
 
     public void shoot() {
-        float x = (float) Math.sin(angle * Math.PI / 180);
-        float y = (float) Math.cos(angle * Math.PI / 180);
+        float x = (float) Math.cos(angle * Math.PI / 180);
+        float y = (float) Math.sin(angle * Math.PI / 180);
+
+        x = -x;
+        y = -y;
 
         new Bullet(new Vector2(player.position), new Vector2(x,y), Vars.world, type.bulletType, player);
     }
 
     @Override
     public void update(float delta) {
-        angle = (float) getAngle(
-                player.position.x * Vars.tileSize,
-                player.position.y * Vars.tileSize,
-                Cursor.worldX,
-                Cursor.worldY,
+        angle = (float) Math.toDegrees(getAngle(
+                0,
+                0,
+                Cursor.x - (Gdx.graphics.getWidth() / 2),
+                Cursor.y - (Gdx.graphics.getHeight() / 2),
                 Gdx.graphics.getWidth()/2,
                 Gdx.graphics.getHeight()/2
-        ) * MathUtils.radiansToDegrees;
+        ));
+
+        angle = -angle;
 
         if (sprite == null && type.texture != null) {
             sprite = new Sprite(type.texture);

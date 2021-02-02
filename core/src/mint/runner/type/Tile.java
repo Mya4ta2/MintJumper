@@ -33,6 +33,8 @@ public class Tile {
         bounds.y = y;
     }
 
+
+    //TODO move to neighbourAir, and think how to make better this hell
     public void setNeighborAir(World world) {
         Tile
         upLeft = null, up = null, upRight = null,
