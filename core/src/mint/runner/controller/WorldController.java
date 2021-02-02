@@ -103,7 +103,7 @@ public class WorldController {
 
     public void processGravity() {
         if (!world.player.grounded) {
-            world.player.velocity.y -= 10f;
+            world.player.velocity.y -= 10f + (world.player.velocity.y + 1);
         }
 
         if (world.player.velocity.y < 0 && world.player.velocity.x > 0) world.player.state = Player.State.RightFail;
