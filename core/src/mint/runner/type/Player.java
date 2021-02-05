@@ -72,8 +72,13 @@ public class Player implements Entity {
         if (weapon == null) weapon = new Weapon(Weapons.test);
         if (weapon != null) weapon.player = this;
 
-        weaponSlotPos.set(position);
-        weaponSlotPos.add(0.5f,0.6f); //temp
+        if (state == State.WalkLeft || state == State.LeftFail) {
+            weaponSlotPos.set(position);
+            weaponSlotPos.add(0.5f,0.6f);
+        } else if (state == State.WalkRight || state == State.RightFail){
+            weaponSlotPos.set(position);
+            weaponSlotPos.add(0.8f,0.6f);
+        }
 
         bounds.x = position.x;
         bounds.y = position.y;

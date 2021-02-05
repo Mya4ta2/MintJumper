@@ -51,6 +51,12 @@ public class Weapon implements Entity {
             sprite.setCenter(player.weaponSlotPos.x * Vars.tileSize, player.weaponSlotPos.y * Vars.tileSize);
             sprite.setSize(type.width * Vars.tileSize, type.height * Vars.tileSize);
             sprite.setRotation(angle);
+
+            if (player.state == Player.State.WalkLeft || player.state == Player.State.LeftFail) {
+                sprite.setFlip(false,false);
+            } else if (player.state == Player.State.WalkRight || player.state == Player.State.RightFail){
+                sprite.setFlip(true,false);
+            }
         }
     }
 
