@@ -73,12 +73,10 @@ public class Player implements Entity {
         if (weapon == null) weapon = new Weapon(Weapons.test);
         if (weapon != null) {
             weapon.player = this;
-            if (weapon.angle > 270) {
-                state = grounded ? State.WalkLeft : State.LeftFail;
-            }
-
-            if (weapon.angle < 180) {
+            if (weapon.angle < 270 && weapon.angle > 90) {
                 state = grounded ? State.WalkRight : State.RightFail;
+            } else {
+                state = grounded ? State.WalkLeft : State.LeftFail;
             }
         }
 
