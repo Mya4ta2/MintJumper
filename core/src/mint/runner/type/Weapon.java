@@ -12,7 +12,7 @@ public class Weapon implements Entity {
     public WeaponType type;
     public Player player;
     public Sprite sprite;
-    public Vector2 playerVector = new Vector2();
+    public Vector2 bulletOutput = new Vector2();
     public float angle;
 
     public Weapon(WeaponType weapon) {
@@ -27,7 +27,7 @@ public class Weapon implements Entity {
         x = -x;
         y = -y;
 
-        new Bullet(new Vector2(player.position), new Vector2(x,y), Vars.world, type.bulletType, player);
+        new Bullet(new Vector2(bulletOutput), new Vector2(x,y), Vars.world, type.bulletType, player);
     }
 
     @Override
@@ -55,6 +55,12 @@ public class Weapon implements Entity {
             sprite.setRotation(angle);
 
             sprite.setFlip(false, angle < 270 && angle > 90);
+
+            //TODO make better :<
+            bulletOutput.set(
+                player.weaponSlotPos.x + sprite.getWidth(),
+                player.weaponSlotPos.y
+            );
         }
     }
 
