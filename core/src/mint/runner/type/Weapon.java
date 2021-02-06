@@ -52,11 +52,9 @@ public class Weapon implements Entity {
             sprite.setSize(type.width * Vars.tileSize, type.height * Vars.tileSize);
             sprite.setRotation(angle);
 
-            if (player.state == Player.State.WalkLeft || player.state == Player.State.LeftFail) {
-                sprite.setFlip(false,false);
-            } else if (player.state == Player.State.WalkRight || player.state == Player.State.RightFail){
-                sprite.setFlip(true,false);
-            }
+            System.out.println(angle < 270 && angle > 90);
+            if (angle < 270 && angle > 90) sprite.setFlip(false,true);
+            else sprite.setFlip(false,false);
         }
     }
 
