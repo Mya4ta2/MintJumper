@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.*;
 import mint.runner.screen.MenuScreen;
 import mint.runner.screen.GameScreen;
+import mint.runner.type.Bullet;
 import mint.runner.type.Events;
 import mint.runner.type.NeighborAir;
 import mint.runner.ui.UI;
