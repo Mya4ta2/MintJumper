@@ -43,6 +43,8 @@ public class Weapon implements Entity {
 
         angle = -angle;
 
+        if (angle < 0) angle += 360;
+
         if (sprite == null && type.texture != null) {
             sprite = new Sprite(type.texture);
         }
@@ -52,9 +54,7 @@ public class Weapon implements Entity {
             sprite.setSize(type.width * Vars.tileSize, type.height * Vars.tileSize);
             sprite.setRotation(angle);
 
-            System.out.println(angle < 270 && angle > 90);
-            if (angle < 270 && angle > 90) sprite.setFlip(false,true);
-            else sprite.setFlip(false,false);
+            sprite.setFlip(false, angle < 270 && angle > 90);
         }
     }
 

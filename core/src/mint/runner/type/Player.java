@@ -1,6 +1,7 @@
 package mint.runner.type;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.Vars;
@@ -70,7 +71,16 @@ public class Player implements Entity {
         oldPosition.set(position);
         position.add(velocity.scl(delta));
         if (weapon == null) weapon = new Weapon(Weapons.test);
-        if (weapon != null) weapon.player = this;
+        if (weapon != null) {
+            weapon.player = this;
+            if (weapon.angle > 270) {
+                state = grounded ? State.WalkLeft : State.LeftFail;
+            }
+
+            if (weapon.angle < 180) {
+                state = grounded ? State.WalkRight : State.RightFail;
+            }
+        }
 
         if (state == State.WalkLeft || state == State.LeftFail) {
             weaponSlotPos.set(position);

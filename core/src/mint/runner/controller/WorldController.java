@@ -29,12 +29,10 @@ public class WorldController {
     public void processInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             world.player.velocity.x += world.player.currentSpeed;
-            world.player.state = Player.State.WalkRight;
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             world.player.velocity.x -= world.player.currentSpeed;
-            world.player.state = Player.State.WalkLeft;
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && world.player.grounded) {
