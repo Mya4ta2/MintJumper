@@ -27,7 +27,8 @@ public class Weapon implements Entity {
         x = -x;
         y = -y;
 
-        new Bullet(new Vector2(bulletOutput), new Vector2(x,y), Vars.world, type.bulletType, player);
+        Bullet bullet = new Bullet(new Vector2(bulletOutput), new Vector2(x,y), Vars.world, type.bulletType, player);
+        bullet.rotation = angle + 90;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Weapon implements Entity {
 
             //TODO make better :<
             bulletOutput.set(
-                player.weaponSlotPos.x + sprite.getWidth(),
+                player.weaponSlotPos.x,
                 player.weaponSlotPos.y
             );
         }

@@ -152,11 +152,7 @@ public class WorldRenderer implements Renderer {
         for (int i = 0; i < world.entitys.array.size; i++) {
             if (world.entitys.array.get(i) instanceof Bullet) {
                 Bullet bullet = (Bullet) world.entitys.array.get(i);
-                batch.draw(
-                        bullet.type.texture,
-                        bullet.position.x * tileSize,
-                        bullet.position.y * tileSize
-                );
+                bullet.sprite.draw(batch);
             }
         }
     }
