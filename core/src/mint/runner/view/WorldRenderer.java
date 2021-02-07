@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -31,6 +32,7 @@ public class WorldRenderer implements Renderer {
     public Texture playerLeftWalkTexture;
     public Texture playerRightFailTexture;
     public Texture playerLeftFailTexture;
+    public Sprite playerHead;
 
     public Texture background;
 
@@ -49,6 +51,7 @@ public class WorldRenderer implements Renderer {
         playerLeftWalkTexture = new Texture("player-left.png");
         playerRightFailTexture = new Texture("player-right-fail.png");
         playerLeftFailTexture = new Texture("player-left-fail.png");
+        playerHead = new Sprite(new Texture("player-head.png"));
 
         background = new Texture("background.png");
 

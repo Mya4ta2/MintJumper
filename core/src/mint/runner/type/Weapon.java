@@ -13,7 +13,6 @@ public class Weapon implements Entity {
     public Player player;
     public Sprite sprite;
     public Vector2 bulletOutput = new Vector2();
-    public float angle;
 
     public Weapon(WeaponType weapon) {
         this.type = weapon;
@@ -21,31 +20,18 @@ public class Weapon implements Entity {
     }
 
     public void shoot() {
-        float x = (float) Math.cos(angle * Math.PI / 180);
-        float y = (float) Math.sin(angle * Math.PI / 180);
+        float x = (float) Math.cos(player.angle * Math.PI / 180);
+        float y = (float) Math.sin(player.angle * Math.PI / 180);
 
         x = -x;
         y = -y;
 
         Bullet bullet = new Bullet(new Vector2(bulletOutput), new Vector2(x,y), Vars.world, type.bulletType, player);
-        bullet.rotation = angle + 90;
+        bullet.rotation = player.angle + 90;
     }
 
     @Override
     public void update(float delta) {
-        angle = (float) Math.toDegrees(getAngle(
-                0,
-                0,
-                Cursor.x - (Gdx.graphics.getWidth() / 2),
-                Cursor.y - (Gdx.graphics.getHeight() / 2),
-                Gdx.graphics.getWidth()/2,
-                Gdx.graphics.getHeight()/2
-        ));
-
-        angle = -angle;
-
-        if (angle < 0) angle += 360;
-
         if (sprite == null && type.texture != null) {
             sprite = new Sprite(type.texture);
         }
@@ -53,24 +39,14 @@ public class Weapon implements Entity {
         if (sprite != null && player != null) {
             sprite.setCenter(player.weaponSlotPos.x * Vars.tileSize, player.weaponSlotPos.y * Vars.tileSize);
             sprite.setSize(type.width * Vars.tileSize, type.height * Vars.tileSize);
-            sprite.setRotation(angle);
+            sprite.setRotation(player.angle);
 
-            sprite.setFlip(false, angle < 270 && angle > 90);
+            sprite.setFlip(false, player.angle < 270 && player.angle > 90);
 
             bulletOutput.set(
                 player.weaponSlotPos.x,
                 player.weaponSlotPos.y
             );
         }
-    }
-
-    public static double getAngle(double point1X, double point1Y,
-                                  double point2X, double point2Y,
-                                  double fixedX, double fixedY) {
-
-        double angle1 = Math.atan2(point1Y - fixedY, point1X - fixedX);
-        double angle2 = Math.atan2(point2Y - fixedY, point2X - fixedX);
-
-        return angle1 - angle2;
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
@@ -36,10 +37,36 @@ public class Player implements Entity {
     public float sprintSpeed = 12;
     public float currentSpeed = speed;
     public boolean sprint;
+    public float angle;
 
     public void jump() {
         velocity.add(0, jumpHeight * Vars.tileSize * 10);
         SoundPlayer.play(Sounds.jump);
+    }
+
+    public static double getAngle(double point1X, double point1Y,
+                                  double point2X, double point2Y,
+                                  double fixedX, double fixedY) {
+
+        double angle1 = Math.atan2(point1Y - fixedY, point1X - fixedX);
+        double angle2 = Math.atan2(point2Y - fixedY, point2X - fixedX);
+
+        return angle1 - angle2;
+    }
+
+    public void setAngle() {
+        angle = (float) Math.toDegrees(getAngle(
+                0,
+                0,
+                Cursor.x - (Gdx.graphics.getWidth() / 2),
+                Cursor.y - (Gdx.graphics.getHeight() / 2),
+                Gdx.graphics.getWidth()/2,
+                Gdx.graphics.getHeight()/2
+        ));
+
+        angle = -angle;
+
+        if (angle < 0) angle += 360;
     }
 
     public Player() {
@@ -68,16 +95,18 @@ public class Player implements Entity {
 
     @Override
     public void update(float delta) {
+        setAngle();
         oldPosition.set(position);
         position.add(velocity.scl(delta));
         if (weapon == null) weapon = new Weapon(Weapons.test);
         if (weapon != null) {
             weapon.player = this;
-            if (weapon.angle < 270 && weapon.angle > 90) {
-                state = grounded ? State.WalkRight : State.RightFail;
-            } else {
-                state = grounded ? State.WalkLeft : State.LeftFail;
-            }
+        }
+
+        if (angle < 270 && angle > 90) {
+            state = grounded ? State.WalkRight : State.RightFail;
+        } else {
+            state = grounded ? State.WalkLeft : State.LeftFail;
         }
 
         if (state == State.WalkLeft || state == State.LeftFail) {
