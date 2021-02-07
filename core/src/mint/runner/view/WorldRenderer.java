@@ -178,6 +178,12 @@ public class WorldRenderer implements Renderer {
                 world.player.height * tileSize
         );
 
+        playerHead.setCenter(world.player.position.x * tileSize + 12.5f, world.player.position.y * tileSize + 19.5f);
+        playerHead.setRotation(world.player.angle + 180);
+        playerHead.setFlip(world.player.angle < 270 && world.player.angle > 90,false);
+
+        playerHead.draw(batch);
+
         if (world.player.weapon != null && world.player.weapon.sprite != null) world.player.weapon.sprite.draw(batch);
     }
 }
