@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
+import mint.runner.content.Overlays;
 
 public class World {
     public final int width, height;
@@ -22,6 +23,8 @@ public class World {
         entitys = new Entitys();
         player = new Player(new Vector2(width/2 + 5,height/2 + 5));
         backgroundColor = Color.valueOf("fafafa");
+
+        tiles.get(10,8).overlay = Overlays.bush;
 
         //createTestWorld();
         setTiles();

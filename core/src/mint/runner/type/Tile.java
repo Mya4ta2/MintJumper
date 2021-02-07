@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
+import mint.runner.content.Overlays;
 
 public class Tile {
     public int x, y;
     public Block block = Blocks.air;
+    public Overlay overlay;
     public NeighborAirState neighborAirState = new NeighborAirState(block.neighborAir);
 
     public Rectangle bounds = new Rectangle();

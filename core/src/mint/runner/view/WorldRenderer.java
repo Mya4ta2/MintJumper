@@ -138,6 +138,16 @@ public class WorldRenderer implements Renderer {
                         array[i].block.height * tileSize
                 );
             }
+
+            if (array[i].overlay != null) {
+                batch.draw(
+                        array[i].overlay.texture,
+                        array[i].x * tileSize,
+                        array[i].y * tileSize,
+                        array[i].block.width * tileSize,
+                        array[i].block.height * tileSize
+                );
+            }
         }
     }
 

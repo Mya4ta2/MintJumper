@@ -20,6 +20,7 @@ public class MainActivity extends Game {
 	public void create() {
 		new Sounds().load();
 		new Blocks().load();
+		new Overlays().load();
 		new Items().load();
 		new Bullets().load();
 		new Weapons().load();
@@ -95,6 +96,7 @@ public class MainActivity extends Game {
 
 	public void loadTextures() {
 		Bullets.bullet.texture = new Texture("bullet.png");
+		Overlays.bush.texture = new Texture("bush.png");
 		Weapons.test.texture = new Texture("weapon.png");
 	}
 
