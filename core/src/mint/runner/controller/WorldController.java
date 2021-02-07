@@ -51,6 +51,12 @@ public class WorldController {
 
         Vector2 pos = world.player.position;
 
+        System.out.println(pos);
+        if (pos.x - 1 <= -1 || pos.y - 1 <= -1 ||
+            pos.x + 1 > world.width || pos.y + 1 > world.width) {
+            return;
+        }
+
         Tile[] nearTiles = {
                 world.tiles.get((int) pos.x, (int) pos.y - 1),
                 world.tiles.get((int) pos.x - 1, (int) pos.y - 1),
@@ -70,6 +76,11 @@ public class WorldController {
         boolean collision = false;
 
         Vector2 pos = world.player.position;
+
+        if (pos.x - 1 < 0 || pos.y - 1 < 0 ||
+                pos.x + 1 > world.width || pos.y + 1 > world.width) {
+            return;
+        }
 
         Tile left1Tile = world.tiles.get((int) pos.x, (int) pos.y);
         Tile left2Tile = world.tiles.get((int) pos.x, (int) pos.y + 1);

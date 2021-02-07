@@ -57,7 +57,6 @@ public class Weapon implements Entity {
 
             sprite.setFlip(false, angle < 270 && angle > 90);
 
-            //TODO make better :<
             bulletOutput.set(
                 player.weaponSlotPos.x,
                 player.weaponSlotPos.y
