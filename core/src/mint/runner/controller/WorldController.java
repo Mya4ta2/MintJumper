@@ -51,7 +51,6 @@ public class WorldController {
 
         Vector2 pos = world.player.position;
 
-        System.out.println(pos);
         if (pos.x - 1 <= -1 || pos.y - 1 <= -1 ||
             pos.x + 1 > world.width || pos.y + 1 > world.width) {
             return;

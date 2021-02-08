@@ -55,6 +55,24 @@ public class MainActivity extends Game {
 		};
 	}
 
+	public static NeighborAir getBrick() {
+		final TextureRegion[][] tmp = new TextureRegion(new Texture("brick.png")).split(Vars.tileSize, Vars.tileSize);
+
+		return new NeighborAir() {
+			{
+				upLeft = tmp[0][0];
+				up = tmp[0][1];
+				upRight = tmp[0][2];
+				left = tmp[1][0];
+				middle = tmp[1][1];
+				right = tmp[1][2];
+				downLeft = tmp[2][0];
+				down = tmp[2][1];
+				downRight = tmp[2][2];
+			}
+		};
+	}
+
 	public static NeighborAir getGrass() {
 		final TextureRegion[][] tmp = new TextureRegion(new Texture("grass.png")).split(Vars.tileSize, Vars.tileSize);
 
