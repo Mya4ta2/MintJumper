@@ -19,6 +19,7 @@ public class MainActivity extends Game {
 	@Override
 	public void create() {
 		new Sounds().load();
+		new Walls().load();
 		new Blocks().load();
 		new Overlays().load();
 		new Items().load();

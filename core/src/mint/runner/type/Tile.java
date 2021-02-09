@@ -5,10 +5,12 @@ import com.badlogic.gdx.math.Rectangle;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.content.Overlays;
+import mint.runner.content.Walls;
 
 public class Tile {
     public int x, y;
     public Block block = Blocks.air;
+    public Wall wall = Walls.air;
     public Overlay overlay;
     public NeighborAirState neighborAirState = new NeighborAirState(block.neighborAir);
 

@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
+import mint.runner.content.Walls;
 import mint.runner.ctype.Renderer;
 import mint.runner.type.*;
 
@@ -146,6 +147,16 @@ public class WorldRenderer implements Renderer {
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,
                         array[i].block.height * tileSize
+                );
+            }
+
+            if (array[i].wall != Walls.air) {
+                batch.draw(
+                        array[i].wall.texture,
+                        array[i].x * tileSize,
+                        array[i].y * tileSize,
+                        array[i].wall.width * tileSize,
+                        array[i].wall.height * tileSize
                 );
             }
         }
