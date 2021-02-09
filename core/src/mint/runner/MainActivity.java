@@ -115,6 +115,7 @@ public class MainActivity extends Game {
 		Bullets.bullet.texture = new Texture("bullet.png");
 		Walls.dirt.texture = new Texture("dirt-wall.png");
 		Overlays.bush.texture = new Texture("bush.png");
+		Overlays.grass1.texture = new Texture("overlay/grass.png");
 		Weapons.test.texture = new Texture("weapon.png");
 	}
 

@@ -25,7 +25,8 @@ public class World {
         player = new Player(new Vector2(width/2 + 5,height/2 + 5));
         backgroundColor = Color.valueOf("fafafa");
 
-        tiles.get(10,8).overlay = Overlays.bush;
+        tiles.get(10,8).overlay = Overlays.grass1;
+        tiles.get(8,8).overlay = Overlays.bush;
         tiles.get(15,8).wall = Walls.dirt;
         tiles.get(16,8).block = Blocks.dirt;
 
