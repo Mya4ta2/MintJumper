@@ -1,16 +1,13 @@
 package mint.runner.editor;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Cursor;
-import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.ctype.Renderer;
 import mint.runner.type.*;
@@ -62,7 +59,7 @@ public class EditorRenderer implements Renderer {
         drawBullets(batch);
 
         if (EditorVars.currentContentSelected != null && EditorVars.tool == EditorToolsType.Brush) {
-            batch.draw(((Block) EditorVars.currentContentSelected).neighborAir.up, Cursor.worldX, Cursor.worldY);
+            batch.draw(((Block) EditorVars.currentContentSelected).rounding.up, Cursor.worldX, Cursor.worldY);
         }
 
         batch.end();
@@ -135,7 +132,7 @@ public class EditorRenderer implements Renderer {
         for (int i = 0; i < array.length; i++) {
             if (array[i].block != Blocks.air) {
                 batch.draw(
-                        array[i].neighborAirState.currentBlockTexture,
+                        array[i].roundingState.currentBlockTexture,
                         array[i].x * tileSize,
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,

@@ -2,9 +2,7 @@ package mint.runner.type;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import mint.runner.Vars;
 import mint.runner.content.Blocks;
-import mint.runner.content.Overlays;
 import mint.runner.content.Walls;
 
 public class Tile {
@@ -12,7 +10,7 @@ public class Tile {
     public Block block = Blocks.air;
     public Wall wall = Walls.air;
     public Overlay overlay;
-    public NeighborAirState neighborAirState = new NeighborAirState(block.neighborAir);
+    public RoundingState roundingState = new RoundingState(block.rounding);
 
     public Rectangle bounds = new Rectangle();
 
@@ -39,7 +37,7 @@ public class Tile {
 
 
     //TODO move to neighbourAir, and think how to make better this hell
-    public void setNeighborAir(World world) {
+    public void setRounding(World world) {
         Tile
         upLeft = null, up = null, upRight = null,
         left = null, right = null,
@@ -49,9 +47,9 @@ public class Tile {
 
         boolean leftWorldEnd = false, rightWorldEnd = false, upWorldEnd = false, downWorldEnd = false;
 
-        TextureRegion tmp = neighborAirState.currentBlockTexture;
-        neighborAirState = new NeighborAirState(block.neighborAir);
-        neighborAirState.currentBlockTexture = tmp;
+        TextureRegion tmp = roundingState.currentBlockTexture;
+        roundingState = new RoundingState(block.rounding);
+        roundingState.currentBlockTexture = tmp;
 
         //this the best code in my life...
         if (block != Blocks.air) {
@@ -77,16 +75,16 @@ public class Tile {
             if (!rightWorldEnd && !downWorldEnd) downRight = world.tiles.get(x + 1, y - 1);
             else downRight = emptyTile;
 
-            if (left.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.left;
-            if (up.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.up;
-            if (right.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.right;
-            if (down.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.down;
+            if (left.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.left;
+            if (up.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.up;
+            if (right.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.right;
+            if (down.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.down;
 
-            if (right.block == Blocks.air && up.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upRight;
-            if (left.block == Blocks.air && up.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upLeft;
+            if (right.block == Blocks.air && up.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.upRight;
+            if (left.block == Blocks.air && up.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.upLeft;
 
-            if (right.block == Blocks.air && down.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downRight;
-            if (left.block == Blocks.air && down.block == Blocks.air) neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downLeft;
+            if (right.block == Blocks.air && down.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.downRight;
+            if (left.block == Blocks.air && down.block == Blocks.air) roundingState.currentBlockTexture = roundingState.rounding.downLeft;
 
             if (
                    up.block != Blocks.air &&
@@ -94,65 +92,65 @@ public class Tile {
                    right.block != Blocks.air &&
                    left.block != Blocks.air
             ) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.middle;
+                roundingState.currentBlockTexture = roundingState.rounding.middle;
             }
 
-            if (    neighborAirState.neighborAir.upAndLeft != null &&
-                    neighborAirState.neighborAir.upAndRight != null &&
-                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.left) &&
-                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndLeft;
+            if (    roundingState.rounding.upAndLeft != null &&
+                    roundingState.rounding.upAndRight != null &&
+                    (up.roundingState.currentBlockTexture == up.roundingState.rounding.left) &&
+                    (left.roundingState.currentBlockTexture == left.roundingState.rounding.up)) {
+                roundingState.currentBlockTexture = roundingState.rounding.upAndLeft;
             }
 
-            if (    neighborAirState.neighborAir.upAndLeft != null &&
-                    neighborAirState.neighborAir.upAndRight != null &&
-                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.right) &&
-                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndRight;
+            if (    roundingState.rounding.upAndLeft != null &&
+                    roundingState.rounding.upAndRight != null &&
+                    (up.roundingState.currentBlockTexture == up.roundingState.rounding.right) &&
+                    (right.roundingState.currentBlockTexture == left.roundingState.rounding.up)) {
+                roundingState.currentBlockTexture = roundingState.rounding.upAndRight;
             }
 
-            if (    neighborAirState.neighborAir.downAndLeft != null &&
-                    neighborAirState.neighborAir.downAndRight != null &&
-                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.left) &&
-                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndLeft;
+            if (    roundingState.rounding.downAndLeft != null &&
+                    roundingState.rounding.downAndRight != null &&
+                    (down.roundingState.currentBlockTexture == up.roundingState.rounding.left) &&
+                    (left.roundingState.currentBlockTexture == left.roundingState.rounding.down)) {
+                roundingState.currentBlockTexture = roundingState.rounding.downAndLeft;
             }
 
-            if (    neighborAirState.neighborAir.downAndLeft != null &&
-                    neighborAirState.neighborAir.downAndRight != null &&
-                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.right) &&
-                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndRight;
+            if (    roundingState.rounding.downAndLeft != null &&
+                    roundingState.rounding.downAndRight != null &&
+                    (down.roundingState.currentBlockTexture == up.roundingState.rounding.right) &&
+                    (right.roundingState.currentBlockTexture == left.roundingState.rounding.down)) {
+                roundingState.currentBlockTexture = roundingState.rounding.downAndRight;
             }
 
             //
 
-            if (    neighborAirState.neighborAir.upAndLeft != null &&
-                    neighborAirState.neighborAir.upAndRight != null &&
-                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.upLeft) &&
-                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndLeft;
+            if (    roundingState.rounding.upAndLeft != null &&
+                    roundingState.rounding.upAndRight != null &&
+                    (up.roundingState.currentBlockTexture == up.roundingState.rounding.upLeft) &&
+                    (left.roundingState.currentBlockTexture == left.roundingState.rounding.up)) {
+                roundingState.currentBlockTexture = roundingState.rounding.upAndLeft;
             }
 
-            if (    neighborAirState.neighborAir.upAndLeft != null &&
-                    neighborAirState.neighborAir.upAndRight != null &&
-                    (up.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.upRight) &&
-                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.up)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.upAndRight;
+            if (    roundingState.rounding.upAndLeft != null &&
+                    roundingState.rounding.upAndRight != null &&
+                    (up.roundingState.currentBlockTexture == up.roundingState.rounding.upRight) &&
+                    (right.roundingState.currentBlockTexture == left.roundingState.rounding.up)) {
+                roundingState.currentBlockTexture = roundingState.rounding.upAndRight;
             }
 
-            if (    neighborAirState.neighborAir.downAndLeft != null &&
-                    neighborAirState.neighborAir.downAndRight != null &&
-                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.downLeft) &&
-                    (left.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndLeft;
+            if (    roundingState.rounding.downAndLeft != null &&
+                    roundingState.rounding.downAndRight != null &&
+                    (down.roundingState.currentBlockTexture == up.roundingState.rounding.downLeft) &&
+                    (left.roundingState.currentBlockTexture == left.roundingState.rounding.down)) {
+                roundingState.currentBlockTexture = roundingState.rounding.downAndLeft;
             }
 
-            if (    neighborAirState.neighborAir.downAndLeft != null &&
-                    neighborAirState.neighborAir.downAndRight != null &&
-                    (down.neighborAirState.currentBlockTexture == up.neighborAirState.neighborAir.downRight) &&
-                    (right.neighborAirState.currentBlockTexture == left.neighborAirState.neighborAir.down)) {
-                neighborAirState.currentBlockTexture = neighborAirState.neighborAir.downAndRight;
+            if (    roundingState.rounding.downAndLeft != null &&
+                    roundingState.rounding.downAndRight != null &&
+                    (down.roundingState.currentBlockTexture == up.roundingState.rounding.downRight) &&
+                    (right.roundingState.currentBlockTexture == left.roundingState.rounding.down)) {
+                roundingState.currentBlockTexture = roundingState.rounding.downAndRight;
             }
         }
     }

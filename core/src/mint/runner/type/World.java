@@ -50,7 +50,7 @@ public class World {
     
     public void setTiles() {
         for (int i = 0; i < tiles.array.length; i++) {
-            tiles.array[i].setNeighborAir(this);
+            tiles.array[i].setRounding(this);
         }
     }
 }

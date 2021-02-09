@@ -1,20 +1,14 @@
 package mint.runner.view;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Cursor;
-import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.content.Walls;
 import mint.runner.ctype.Renderer;
@@ -132,7 +126,7 @@ public class WorldRenderer implements Renderer {
         for (int i = 0; i < array.length; i++) {
             if (array[i].block != Blocks.air) {
                 batch.draw(
-                        array[i].neighborAirState.currentBlockTexture,
+                        array[i].roundingState.currentBlockTexture,
                         array[i].x * tileSize,
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,

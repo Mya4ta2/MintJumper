@@ -4,13 +4,11 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.*;
 import mint.runner.screen.MenuScreen;
 import mint.runner.screen.GameScreen;
-import mint.runner.type.Bullet;
 import mint.runner.type.Events;
-import mint.runner.type.NeighborAir;
+import mint.runner.type.Rounding;
 import mint.runner.ui.UI;
 
 public class MainActivity extends Game {
@@ -38,10 +36,10 @@ public class MainActivity extends Game {
 		Vars.menuScreen = (MenuScreen) getScreen();
 	}
 
-	public static NeighborAir getDirt() {
+	public static Rounding getDirt() {
 		final TextureRegion[][] tmp = new TextureRegion(new Texture("dirt.png")).split(Vars.tileSize, Vars.tileSize);
 
-		return new NeighborAir() {
+		return new Rounding() {
 			{
 				upLeft = tmp[0][0];
 				up = tmp[0][1];
@@ -56,10 +54,10 @@ public class MainActivity extends Game {
 		};
 	}
 
-	public static NeighborAir getBrick() {
+	public static Rounding getBrick() {
 		final TextureRegion[][] tmp = new TextureRegion(new Texture("brick.png")).split(Vars.tileSize, Vars.tileSize);
 
-		return new NeighborAir() {
+		return new Rounding() {
 			{
 				upLeft = tmp[0][0];
 				up = tmp[0][1];
@@ -74,10 +72,10 @@ public class MainActivity extends Game {
 		};
 	}
 
-	public static NeighborAir getGrass() {
+	public static Rounding getGrass() {
 		final TextureRegion[][] tmp = new TextureRegion(new Texture("grass.png")).split(Vars.tileSize, Vars.tileSize);
 
-		return new NeighborAir() {
+		return new Rounding() {
 			{
 				upLeft = tmp[0][0];
 				up = tmp[0][1];
@@ -96,9 +94,9 @@ public class MainActivity extends Game {
 		};
 	}
 
-	public static NeighborAir getAir() {
+	public static Rounding getAir() {
 		//empty textures
-		return new NeighborAir() {
+		return new Rounding() {
 			{
 				upLeft = new TextureRegion();
 				up = new TextureRegion();

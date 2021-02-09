@@ -1,21 +1,14 @@
 package mint.runner.ui;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
-import mint.runner.ctype.ContentList;
 import mint.runner.ctype.MappableContent;
-import mint.runner.type.Block;
 import mint.runner.type.ContentType;
 
 public class ContentSelectMenu extends Actor {
@@ -48,7 +41,7 @@ public class ContentSelectMenu extends Actor {
                 buttons[i] = new ContentImageButton(
                         unPressedButton,
                         pressedButton,
-                        Blocks.blocks.get(i).neighborAir.up.getTexture());
+                        Blocks.blocks.get(i).rounding.up.getTexture());
                 buttons[i].content = Blocks.blocks.get(i);
                 buttons[i].setSize(Vars.tileSize * 2,Vars.tileSize * 2);
             }
