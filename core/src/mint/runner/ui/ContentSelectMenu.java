@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
+import mint.runner.content.Overlays;
 import mint.runner.ctype.MappableContent;
 import mint.runner.type.ContentType;
 
@@ -34,6 +35,11 @@ public class ContentSelectMenu extends Actor {
         setPositions();
     }
 
+    public void setContentType(ContentType contentType) {
+        this.contentType = contentType;
+        fill();
+    }
+
     public void fill() {
         if (contentType == ContentType.block) {
             buttons = new ContentImageButton[Blocks.blocks.size];
@@ -43,6 +49,32 @@ public class ContentSelectMenu extends Actor {
                         pressedButton,
                         Blocks.blocks.get(i).rounding.up.getTexture());
                 buttons[i].content = Blocks.blocks.get(i);
+                buttons[i].setSize(Vars.tileSize * 2,Vars.tileSize * 2);
+            }
+
+            //oh no code
+            for (int i = 0; i < buttons.length; i++) {
+                final int finalI = i;
+                buttons[i].addListener(new InputListener(){
+                    ContentImageButton button1 = buttons[finalI];
+
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        currentContent = button1.content;
+                        return super.touchDown(event, x, y, pointer, button);
+                    }
+                });
+            }
+        }
+
+        if (contentType == ContentType.overlay) {
+            buttons = new ContentImageButton[Overlays.overlays.size()];
+            for (int i = 0; i < buttons.length; i++) {
+                buttons[i] = new ContentImageButton(
+                        unPressedButton,
+                        pressedButton,
+                        Overlays.overlays.get(i).texture);
+                buttons[i].content = Overlays.overlays.get(i);
                 buttons[i].setSize(Vars.tileSize * 2,Vars.tileSize * 2);
             }
 

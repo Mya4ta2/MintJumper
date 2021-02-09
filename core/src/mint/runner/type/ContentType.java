@@ -1,5 +1,5 @@
 package mint.runner.type;
 
 public enum ContentType {
-    block
+    block, overlay, wall
 }

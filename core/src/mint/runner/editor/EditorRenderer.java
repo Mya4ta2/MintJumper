@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import mint.runner.Cursor;
 import mint.runner.content.Blocks;
+import mint.runner.content.Walls;
 import mint.runner.ctype.Renderer;
 import mint.runner.type.*;
 
@@ -59,7 +60,10 @@ public class EditorRenderer implements Renderer {
         drawBullets(batch);
 
         if (EditorVars.currentContentSelected != null && EditorVars.tool == EditorToolsType.Brush) {
-            batch.draw(((Block) EditorVars.currentContentSelected).rounding.up, Cursor.worldX, Cursor.worldY);
+            if (EditorVars.currentContentSelected instanceof Block)
+                batch.draw(((Block) EditorVars.currentContentSelected).rounding.up, Cursor.worldX, Cursor.worldY);
+            if (EditorVars.currentContentSelected instanceof Overlay)
+                batch.draw(((Overlay) EditorVars.currentContentSelected).texture, Cursor.worldX, Cursor.worldY);
         }
 
         batch.end();
@@ -137,6 +141,26 @@ public class EditorRenderer implements Renderer {
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,
                         array[i].block.height * tileSize
+                );
+            }
+
+            if (array[i].overlay != null) {
+                batch.draw(
+                        array[i].overlay.texture,
+                        array[i].x * tileSize,
+                        array[i].y * tileSize,
+                        array[i].block.width * tileSize,
+                        array[i].block.height * tileSize
+                );
+            }
+
+            if (array[i].wall != Walls.air) {
+                batch.draw(
+                        array[i].wall.texture,
+                        array[i].x * tileSize,
+                        array[i].y * tileSize,
+                        array[i].wall.width * tileSize,
+                        array[i].wall.height * tileSize
                 );
             }
         }

@@ -6,10 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
-import mint.runner.type.Block;
-import mint.runner.type.Player;
-import mint.runner.type.Tile;
-import mint.runner.type.World;
+import mint.runner.type.*;
 
 import static mint.runner.Vars.tileSize;
 
@@ -57,7 +54,10 @@ public class EditorController {
                         x >= 0 && x <= world.width &&
                         y >= 0 && y <= world.height
                 ) {
-                    world.tiles.get(x, y).block = (Block) EditorVars.currentContentSelected;
+                    if (EditorVars.currentContentSelected instanceof Block)
+                        world.tiles.get(x, y).block = (Block) EditorVars.currentContentSelected;
+                    else if (EditorVars.currentContentSelected instanceof Overlay)
+                        world.tiles.get(x, y).overlay = (Overlay) EditorVars.currentContentSelected;
                 }
 
             if (EditorVars.tool == EditorToolsType.Erasing) {

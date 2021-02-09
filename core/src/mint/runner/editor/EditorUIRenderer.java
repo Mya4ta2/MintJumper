@@ -43,7 +43,7 @@ public class EditorUIRenderer implements Renderer {
         currentStage = stage;
         propertiesStage = new Stage();
 
-        menu = new ContentSelectMenu(ContentType.block, new Texture("buttonUp.png"), new Texture("buttonDown.png"));
+        menu = new ContentSelectMenu(ContentType.overlay, new Texture("buttonUp.png"), new Texture("buttonDown.png"));
         toolSelectMenu = new ToolSelectMenu(
                 new Texture("buttonUp.png"),
                 new Texture("buttonDown.png"),
