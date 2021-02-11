@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import mint.runner.content.*;
 import mint.runner.screen.MenuScreen;
 import mint.runner.screen.GameScreen;
+import mint.runner.type.ContentLoader;
 import mint.runner.type.Events;
 import mint.runner.type.Rounding;
 import mint.runner.ui.UI;
@@ -16,14 +17,10 @@ public class MainActivity extends Game {
 
 	@Override
 	public void create() {
-		new Sounds().load();
-		new Walls().load();
-		new Blocks().load();
-		new Overlays().load();
-		new Items().load();
-		new Bullets().load();
-		new Weapons().load();
-		new Events().load();
+		ContentLoader contentLoader = new ContentLoader();
+		contentLoader.load();
+		Vars.content = contentLoader;
+
 		loadTextures();
 
 		Vars.ui = new UI();

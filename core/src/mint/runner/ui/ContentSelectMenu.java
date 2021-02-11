@@ -68,7 +68,7 @@ public class ContentSelectMenu extends Actor {
         }
 
         if (contentType == ContentType.overlay) {
-            buttons = new ContentImageButton[Overlays.overlays.size()];
+            buttons = new ContentImageButton[Overlays.overlays.size];
             for (int i = 0; i < buttons.length; i++) {
                 buttons[i] = new ContentImageButton(
                         unPressedButton,
