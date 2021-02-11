@@ -16,7 +16,6 @@ public class Blocks implements ContentList {
                 rounding = MainActivity.getDirt();
             }
         };
-        blocks.add(air);
 
         dirt = new Block("dirt") {
             {

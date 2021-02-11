@@ -12,7 +12,6 @@ public class Walls implements ContentList {
     @Override
     public void load() {
         air = new Wall("air");
-        walls.add(air);
         dirt = new Wall("dirt");
         walls.add(dirt);
     }

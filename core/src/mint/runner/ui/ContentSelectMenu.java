@@ -14,7 +14,6 @@ import mint.runner.type.ContentType;
 
 public class ContentSelectMenu extends Actor {
     public static final float separator = 2.5f;
-    public ContentType contentType;
     public Texture unPressedButton;
     public Texture pressedButton;
     public Sprite black;
@@ -22,8 +21,7 @@ public class ContentSelectMenu extends Actor {
 
     public ContentImageButton[] buttons;
 
-    public ContentSelectMenu(ContentType contentType, Texture unPressedButton, Texture pressedButton) {
-        this.contentType = contentType;
+    public ContentSelectMenu(Texture unPressedButton, Texture pressedButton) {
         this.unPressedButton = unPressedButton;
         this.pressedButton = pressedButton;
 
@@ -35,46 +33,16 @@ public class ContentSelectMenu extends Actor {
         setPositions();
     }
 
-    public void setContentType(ContentType contentType) {
-        this.contentType = contentType;
-        fill();
-    }
-
     public void fill() {
-        if (contentType == ContentType.block) {
-            buttons = new ContentImageButton[Blocks.blocks.size];
+        System.out.println(Vars.content.mappableContents.size);
+        buttons = new ContentImageButton[Vars.content.mappableContents.size];
+        for (MappableContent content : Vars.content.mappableContents) {
             for (int i = 0; i < buttons.length; i++) {
                 buttons[i] = new ContentImageButton(
                         unPressedButton,
                         pressedButton,
-                        Blocks.blocks.get(i).rounding.up.getTexture());
-                buttons[i].content = Blocks.blocks.get(i);
-                buttons[i].setSize(Vars.tileSize * 2,Vars.tileSize * 2);
-            }
-
-            //oh no code
-            for (int i = 0; i < buttons.length; i++) {
-                final int finalI = i;
-                buttons[i].addListener(new InputListener(){
-                    ContentImageButton button1 = buttons[finalI];
-
-                    @Override
-                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        currentContent = button1.content;
-                        return super.touchDown(event, x, y, pointer, button);
-                    }
-                });
-            }
-        }
-
-        if (contentType == ContentType.overlay) {
-            buttons = new ContentImageButton[Overlays.overlays.size];
-            for (int i = 0; i < buttons.length; i++) {
-                buttons[i] = new ContentImageButton(
-                        unPressedButton,
-                        pressedButton,
-                        Overlays.overlays.get(i).texture);
-                buttons[i].content = Overlays.overlays.get(i);
+                        Blocks.brick.rounding.up.getTexture());  //TODO get texture for buttons
+                buttons[i].content = Vars.content.mappableContents.get(i);
                 buttons[i].setSize(Vars.tileSize * 2,Vars.tileSize * 2);
             }
 

@@ -53,7 +53,7 @@ public class EditorUIRenderer implements Renderer {
         batch = new SpriteBatch();
         propertiesStage = new Stage();
 
-        menu = new ContentSelectMenu(ContentType.overlay, new Texture("buttonUp.png"), new Texture("buttonDown.png"));
+        menu = new ContentSelectMenu(new Texture("buttonUp.png"), new Texture("buttonDown.png"));
         toolSelectMenu = new ToolSelectMenu(
                 new Texture("buttonUp.png"),
                 new Texture("buttonDown.png"),
