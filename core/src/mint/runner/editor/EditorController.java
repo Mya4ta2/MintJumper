@@ -54,10 +54,7 @@ public class EditorController {
                         x >= 0 && x <= world.width &&
                         y >= 0 && y <= world.height
                 ) {
-                    if (EditorVars.currentContentSelected instanceof Block)
-                        world.tiles.get(x, y).block = (Block) EditorVars.currentContentSelected;
-                    else if (EditorVars.currentContentSelected instanceof Overlay)
-                        world.tiles.get(x, y).overlay = (Overlay) EditorVars.currentContentSelected;
+                    world.tiles.get(x, y).setMappableContent(EditorVars.currentContentSelected);
                 }
 
             if (EditorVars.tool == EditorToolsType.Erasing) {

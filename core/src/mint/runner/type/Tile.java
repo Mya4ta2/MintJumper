@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import mint.runner.content.Blocks;
 import mint.runner.content.Walls;
+import mint.runner.ctype.MappableContent;
 
 public class Tile {
     public int x, y;
@@ -35,6 +36,11 @@ public class Tile {
         bounds.y = y;
     }
 
+    public void setMappableContent(MappableContent content) {
+        if (content instanceof Block) block = (Block) content;
+        if (content instanceof Overlay) overlay = (Overlay) content;
+        if (content instanceof Wall) wall = (Wall) content;
+    }
 
     //TODO move to neighbourAir, and think how to make better this hell
     public void setRounding(World world) {
