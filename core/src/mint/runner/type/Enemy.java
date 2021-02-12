@@ -8,16 +8,11 @@ import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
 import mint.runner.content.Weapons;
 
-//TODO yes, it copy of Player, need remove code re-use
-public class Enemy implements Entity {
+public class Enemy extends Body {
     public float width = 1.5f;
     public float height = 1.5f;
 
     public EnemyController controller;
-    public Vector2 position = new Vector2();
-    public Vector2 oldPosition = new Vector2();
-    public Vector2 velocity = new Vector2();
-    public Rectangle bounds = new Rectangle();
     public Rectangle groundHitBox = new Rectangle();
     public Player.State state = Player.State.WalkRight;
     public Weapon weapon;
@@ -63,9 +58,8 @@ public class Enemy implements Entity {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
         controller.update(delta);
-        oldPosition.set(position);
-        position.add(velocity.scl(delta));
 
         weaponSlotPos.set(position);
         weaponSlotPos.add(0.5f,0.6f); //temp

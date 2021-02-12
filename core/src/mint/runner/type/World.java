@@ -31,7 +31,10 @@ public class World {
 //        tiles.get(15,8).wall = Walls.dirt;
 //        tiles.get(16,8).block = Blocks.dirt;
 
-        new Enemy(new Vector2(width/2,height/2 + 5))
+        Enemy enemy;
+        enemy = new Enemy(new Vector2(width/2,height/2 + 5));
+        enemy.controller = new EnemyController(player);
+        enemy.controller.enemy = enemy;
 
         //createTestWorld();
         setTiles();

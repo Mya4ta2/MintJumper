@@ -10,7 +10,7 @@ import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
 import mint.runner.content.Weapons;
 
-public class Player implements Entity {
+public class Player extends Body {
     public enum State {
         WalkLeft, WalkRight, LeftFail, RightFail
     }
@@ -18,10 +18,6 @@ public class Player implements Entity {
     public float width = 1.5f;
     public float height = 1.5f;
 
-    public Vector2 position = new Vector2();
-    public Vector2 oldPosition = new Vector2();
-    public Vector2 velocity = new Vector2();
-    public Rectangle bounds = new Rectangle();
     public Rectangle groundHitBox = new Rectangle();
     public State state = State.WalkRight;
     public Weapon weapon;
@@ -95,9 +91,8 @@ public class Player implements Entity {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
         setAngle();
-        oldPosition.set(position);
-        position.add(velocity.scl(delta));
         if (weapon == null) weapon = new Weapon(Weapons.test);
         if (weapon != null) {
             weapon.player = this;
