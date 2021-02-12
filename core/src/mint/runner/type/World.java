@@ -34,6 +34,11 @@ public class World {
         setTiles();
     }
 
+    public boolean inWorldBounds(int x, int y) {
+        return x >= 0 && x <= width &&
+                y >= 0 && y <= height;
+    }
+
     public void createTestWorld() {
         for (int i = 1; i < width-1; i++) {
             tiles.get(width/2 + i,height/2).block = Blocks.grass;

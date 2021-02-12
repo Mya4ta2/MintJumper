@@ -50,18 +50,12 @@ public class EditorController {
             int y = (int) (Cursor.worldY / tileSize);
 
             if (EditorVars.currentContentSelected != null && EditorVars.tool == EditorToolsType.Brush)
-                if (
-                        x >= 0 && x <= world.width &&
-                        y >= 0 && y <= world.height
-                ) {
+                if (world.inWorldBounds(x,y)) {
                     world.tiles.get(x, y).setMappableContent(EditorVars.currentContentSelected);
                 }
 
             if (EditorVars.tool == EditorToolsType.Erasing) {
-                if (
-                        x >= 0 && x <= world.width &&
-                        y >= 0 && y <= world.height
-                ) {
+                if (world.inWorldBounds(x,y)) {
                     world.tiles.get(x, y).block = Blocks.air;
                 }
             }
