@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
+import mint.runner.content.Overlays;
+import mint.runner.content.Walls;
 import mint.runner.type.World;
 
 public class WorldWriter {
@@ -31,6 +33,28 @@ public class WorldWriter {
 
             if (world.tiles.array[i].block != Blocks.air) {
                 file.writeString("Blocks." + world.tiles.array[i].block.name + " (",true);
+                file.writeString(
+                        "[" + world.tiles.array[i].x
+                                + "," +
+                                world.tiles.array[i].y + "],",
+                        true
+                );
+                file.writeString(");\n",true);
+            }
+
+            if (world.tiles.array[i].wall != Walls.air) {
+                file.writeString("Walls." + world.tiles.array[i].wall.name + " (",true);
+                file.writeString(
+                        "[" + world.tiles.array[i].x
+                                + "," +
+                                world.tiles.array[i].y + "],",
+                        true
+                );
+                file.writeString(");\n",true);
+            }
+
+            if (world.tiles.array[i].overlay != null) {
+                file.writeString("Overlays." + world.tiles.array[i].overlay.name + " (",true);
                 file.writeString(
                         "[" + world.tiles.array[i].x
                                 + "," +

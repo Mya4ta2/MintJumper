@@ -7,7 +7,7 @@ import mint.runner.type.Overlay;
 import java.util.ArrayList;
 
 public class Overlays implements ContentList {
-    public static Overlay bush, grass1;
+    public static Overlay bush, grass;
     public static Array<Overlay> overlays = new Array<>();
 
     @Override
@@ -17,7 +17,7 @@ public class Overlays implements ContentList {
         };
         overlays.add(bush);
 
-        grass1 = new Overlay("grass1");
-        overlays.add(grass1);
+        grass = new Overlay("grass");
+        overlays.add(grass);
     }
 }

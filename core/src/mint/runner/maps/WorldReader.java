@@ -2,8 +2,12 @@ package mint.runner.maps;
 
 import com.badlogic.gdx.files.FileHandle;
 import mint.runner.content.Blocks;
+import mint.runner.content.Overlays;
+import mint.runner.content.Walls;
 import mint.runner.ctype.MappableContent;
 import mint.runner.type.Block;
+import mint.runner.type.Overlay;
+import mint.runner.type.Wall;
 import mint.runner.type.World;
 
 import java.io.FileNotFoundException;
@@ -68,20 +72,36 @@ public class WorldReader {
                                         blockPositions[i][1]
                                 ).block = ((Block) contentTypeObj);
                             }
-//                        } else if (contentType.equals("Floors")) {
-//                            for (Floor floor : Floors.floors) {
-//                                if (floor.getName().equals(contentName)) {
-//                                    contentTypeObj = floor;
-//                                }
-//                            }
+                        } else if (contentType.equals("Walls")) {
+                            for (Wall wall : Walls.walls) {
+                                if (wall.name.equals(contentName)) {
+                                    contentTypeObj = wall;
+                                }
+                            }
 
-//                            if (contentTypeObj == null) throw new Exception("error find floor " + contentName);
-//                            for (int i = 0; i < blockPositions.length; i++) {
-//                                world.tiles.get(
-//                                        blockPositions[i][0],
-//                                        blockPositions[i][1]
-//                                ).setFloor((Floor) contentTypeObj);
-//                            }
+                            if (contentTypeObj == null) throw new Exception("error find wall" + contentName);
+
+                            for (int i = 0; i < blockPositions.length; i++) {
+                                world.tiles.get(
+                                        blockPositions[i][0],
+                                        blockPositions[i][1]
+                                ).wall = ((Wall) contentTypeObj);
+                            }
+                        } else if (contentType.equals("Overlays")) {
+                            for (Overlay overlay : Overlays.overlays) {
+                                if (overlay.name.equals(contentName)) {
+                                    contentTypeObj = overlay;
+                                }
+                            }
+
+                            if (contentTypeObj == null) throw new Exception("error find overlay " + contentName);
+
+                            for (int i = 0; i < blockPositions.length; i++) {
+                                world.tiles.get(
+                                        blockPositions[i][0],
+                                        blockPositions[i][1]
+                                ).overlay = ((Overlay) contentTypeObj);
+                            }
                         }
                     }
                 }
