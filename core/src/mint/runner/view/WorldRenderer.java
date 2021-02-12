@@ -69,6 +69,7 @@ public class WorldRenderer implements Renderer {
         drawWorld(batch);
         drawPlayer(batch);
         drawBullets(batch);
+        drawEnemy(batch);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -171,6 +172,15 @@ public class WorldRenderer implements Renderer {
             if (world.entitys.array.get(i) instanceof Bullet) {
                 Bullet bullet = (Bullet) world.entitys.array.get(i);
                 bullet.sprite.draw(batch);
+            }
+        }
+    }
+
+    public void drawEnemy(SpriteBatch spriteBatch) {
+        for (int i = 0; i < world.entitys.array.size; i++) {
+            if (world.entitys.array.get(i) instanceof Enemy) {
+                Enemy enemy = (Enemy) world.entitys.array.get(i);
+                spriteBatch.draw(playerLeftFailTexture, enemy.position.x * tileSize,enemy.position.y * tileSize);
             }
         }
     }
