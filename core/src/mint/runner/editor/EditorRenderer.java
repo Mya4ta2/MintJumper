@@ -134,6 +134,16 @@ public class EditorRenderer implements Renderer {
     public void drawWorld(SpriteBatch batch) {
         Tile[] array = world.tiles.array;
         for (int i = 0; i < array.length; i++) {
+            if (array[i].wall != Walls.air) {
+                batch.draw(
+                        array[i].wall.texture,
+                        array[i].x * tileSize,
+                        array[i].y * tileSize,
+                        array[i].wall.width * tileSize,
+                        array[i].wall.height * tileSize
+                );
+            }
+
             if (array[i].block != Blocks.air) {
                 batch.draw(
                         array[i].roundingState.currentBlockTexture,
@@ -151,16 +161,6 @@ public class EditorRenderer implements Renderer {
                         array[i].y * tileSize,
                         array[i].block.width * tileSize,
                         array[i].block.height * tileSize
-                );
-            }
-
-            if (array[i].wall != Walls.air) {
-                batch.draw(
-                        array[i].wall.texture,
-                        array[i].x * tileSize,
-                        array[i].y * tileSize,
-                        array[i].wall.width * tileSize,
-                        array[i].wall.height * tileSize
                 );
             }
         }

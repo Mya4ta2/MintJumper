@@ -13,7 +13,7 @@ public class ContentLoader {
     public Overlays overlays = new Overlays();
     public Items items = new Items();
     public Bullets bullets = new Bullets();
-    public Weapons weapons = new Weapons(); //TODO maybe move weapon to items :<
+    public Weapons weapons = new Weapons();
     public Events events = new Events();
 
     public void load() {

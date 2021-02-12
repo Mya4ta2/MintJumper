@@ -125,7 +125,20 @@ public class EditorUIRenderer implements Renderer {
             }
         });
 
-        worldSelectTable.center().add(back).row();
+        TextButton newWorld = new TextButton(buttonUp, buttonDown, new BitmapFont());
+        newWorld.setText("new");
+        newWorld.setSize(170,70);
+        newWorld.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                EditorVars.world = new World(50,50,"new world");
+                currentStage = stage;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+        worldSelectTable.center().add(back);
+        worldSelectTable.center().add(newWorld).row();
 
         for (int i = 0; i < worlds.size(); i++) {
             TextButton worldTempButton = new TextButton(buttonUp, buttonDown,new BitmapFont());
