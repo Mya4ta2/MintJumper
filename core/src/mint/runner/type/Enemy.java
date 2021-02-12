@@ -13,6 +13,7 @@ public class Enemy implements Entity {
     public float width = 1.5f;
     public float height = 1.5f;
 
+    public EnemyController controller;
     public Vector2 position = new Vector2();
     public Vector2 oldPosition = new Vector2();
     public Vector2 velocity = new Vector2();
@@ -62,6 +63,7 @@ public class Enemy implements Entity {
 
     @Override
     public void update(float delta) {
+        controller.update(delta);
         oldPosition.set(position);
         position.add(velocity.scl(delta));
 
