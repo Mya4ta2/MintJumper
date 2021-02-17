@@ -12,6 +12,7 @@ public class Body implements Entity {
     @Override
     public void update(float delta) {
         oldPosition.set(position);
-        position.add(velocity.scl(delta));
+        position.add(velocity);
+        velocity.crs(delta,delta);
     }
 }

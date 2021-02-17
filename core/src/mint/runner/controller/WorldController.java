@@ -28,11 +28,11 @@ public class WorldController {
 
     public void processInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            world.player.velocity.x += world.player.currentSpeed;
+            world.player.velocity.x = world.player.currentSpeed;
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            world.player.velocity.x -= world.player.currentSpeed;
+            world.player.velocity.x = -world.player.currentSpeed;
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && world.player.grounded) {
@@ -69,6 +69,8 @@ public class WorldController {
         }
 
         world.player.grounded = count > 0;
+
+        System.out.println(world.player.grounded);
     }
 
     public void processCollisions() {
@@ -106,12 +108,13 @@ public class WorldController {
 
         if (collision) {
             world.player.position.set(world.player.oldPosition);
+            world.player.velocity.setZero();
         }
     }
 
     public void processGravity() {
         if (!world.player.grounded) {
-            world.player.velocity.y -= 10f + (world.player.velocity.y + 1);
+            world.player.velocity.y -= 0.01f;
         }
 
         if (world.player.velocity.y < 0 && world.player.velocity.x > 0) world.player.state = Player.State.RightFail;

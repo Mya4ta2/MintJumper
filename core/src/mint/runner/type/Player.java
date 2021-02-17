@@ -24,19 +24,19 @@ public class Player extends Body {
     public Vector2 weaponSlotPos = new Vector2();
 
     public int MaxHealth = 100;
-    public int jumpHeight = 5;
+    public int jumpHeight = 3;
     public int health;
     public boolean walkLeft = false;
     public boolean grounded;
 
-    public float speed = 8;
+    public float speed = 0.1f;
     public float sprintSpeed = 12;
     public float currentSpeed = speed;
     public boolean sprint;
     public float angle;
 
     public void jump() {
-        velocity.add(0, jumpHeight * Vars.tileSize * 10);
+        velocity.add(0, jumpHeight / 16f);
         SoundPlayer.play(Sounds.jump);
     }
 
