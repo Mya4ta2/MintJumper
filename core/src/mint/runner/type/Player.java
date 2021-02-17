@@ -15,7 +15,7 @@ public class Player extends Body {
         WalkLeft, WalkRight, LeftFail, RightFail
     }
 
-    public float width = 1.5f;
+    public float width = 0.9375f;
     public float height = 1.5f;
 
     public Rectangle groundHitBox = new Rectangle();
@@ -28,6 +28,8 @@ public class Player extends Body {
     public int health;
     public boolean walkLeft = false;
     public boolean grounded;
+    public boolean lookRight;
+    public boolean lookLeft;
 
     public float speed = 0.1f;
     public float sprintSpeed = 12;
@@ -100,8 +102,12 @@ public class Player extends Body {
 
         if (angle < 270 && angle > 90) {
             state = grounded ? State.WalkRight : State.RightFail;
+            lookLeft = false;
+            lookRight = true;
         } else {
             state = grounded ? State.WalkLeft : State.LeftFail;
+            lookLeft = true;
+            lookRight = false;
         }
 
         if (state == State.WalkLeft || state == State.LeftFail) {

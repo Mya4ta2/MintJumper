@@ -203,7 +203,11 @@ public class WorldRenderer implements Renderer {
                 world.player.height * tileSize
         );
 
-        playerHead.setCenter(world.player.position.x * tileSize + 12.5f, world.player.position.y * tileSize + 19.5f);
+        playerHead.setCenter(
+                world.player.position.x * tileSize + (world.player.lookRight ? 8.5f : 7.5f),
+                world.player.position.y * tileSize + 19.5f
+        );
+
         playerHead.setRotation(world.player.angle + 180);
         playerHead.setFlip(world.player.angle < 270 && world.player.angle > 90,false);
 

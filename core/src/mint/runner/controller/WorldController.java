@@ -69,8 +69,6 @@ public class WorldController {
         }
 
         world.player.grounded = count > 0;
-
-        System.out.println(world.player.grounded);
     }
 
     public void processCollisions() {
