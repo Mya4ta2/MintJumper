@@ -6,7 +6,6 @@ import mint.runner.Vars;
 import mint.runner.ai.EnemyController;
 import mint.runner.audio.SoundPlayer;
 import mint.runner.content.Sounds;
-import mint.runner.content.Weapons;
 
 public class Enemy extends Body {
     public float width = 1.5f;

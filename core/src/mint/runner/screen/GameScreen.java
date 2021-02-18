@@ -8,8 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import mint.runner.Cursor;
 import mint.runner.Vars;
 import mint.runner.controller.WorldController;
-import mint.runner.maps.WorldReader;
-import mint.runner.maps.WorldWriter;
 import mint.runner.type.World;
 import mint.runner.view.WorldRenderer;
 

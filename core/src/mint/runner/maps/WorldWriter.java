@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
-import mint.runner.content.Overlays;
 import mint.runner.content.Walls;
 import mint.runner.type.World;
 

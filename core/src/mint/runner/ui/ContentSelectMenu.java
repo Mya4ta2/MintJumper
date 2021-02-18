@@ -8,9 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import mint.runner.Vars;
 import mint.runner.content.Blocks;
-import mint.runner.content.Overlays;
 import mint.runner.ctype.MappableContent;
-import mint.runner.type.ContentType;
 
 public class ContentSelectMenu extends Actor {
     public static final float separator = 2.5f;

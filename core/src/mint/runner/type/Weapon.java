@@ -1,11 +1,7 @@
 package mint.runner.type;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import jdk.nashorn.internal.objects.NativeArguments;
-import mint.runner.Cursor;
 import mint.runner.Vars;
 
 public class Weapon implements Entity {

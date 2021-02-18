@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -19,8 +18,6 @@ import mint.runner.Vars;
 import mint.runner.ctype.Renderer;
 import mint.runner.maps.WorldReader;
 import mint.runner.maps.WorldWriter;
-import mint.runner.screen.GameScreen;
-import mint.runner.type.ContentType;
 import mint.runner.type.World;
 import mint.runner.ui.*;
 

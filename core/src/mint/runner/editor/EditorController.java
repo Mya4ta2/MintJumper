@@ -2,9 +2,7 @@ package mint.runner.editor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector2;
 import mint.runner.Cursor;
-import mint.runner.Vars;
 import mint.runner.content.Blocks;
 import mint.runner.type.*;
 

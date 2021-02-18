@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import mint.runner.content.Blocks;
-import mint.runner.type.Bullet;
 import mint.runner.type.Player;
 import mint.runner.type.Tile;
 import mint.runner.type.World;

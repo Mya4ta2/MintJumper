@@ -1,7 +1,6 @@
 package mint.runner.type;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Event {
     public final ArrayList<Runnable> tasks = new ArrayList<>();

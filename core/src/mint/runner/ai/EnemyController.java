@@ -2,7 +2,6 @@ package mint.runner.ai;
 
 import mint.runner.type.Enemy;
 import mint.runner.type.Player;
-import mint.runner.type.World;
 
 public class EnemyController {
     public Enemy enemy;

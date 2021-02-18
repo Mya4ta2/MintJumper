@@ -1,8 +1,6 @@
 package mint.runner.content;
 
 import mint.runner.ctype.ContentList;
-import mint.runner.type.BulletType;
-import mint.runner.type.Weapon;
 import mint.runner.type.WeaponType;
 
 public class Weapons implements ContentList {
